@@ -4,6 +4,7 @@ import {
   InternalServerErrorException,
   UnauthorizedException,
 } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../user/user.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
@@ -12,7 +13,10 @@ import { randomUUID } from 'crypto';
 
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService,
+  ) { }
 
   async register(registerDto: RegisterDto) {
     const { email, password, fullName, studentId, emailAlerts } = registerDto;
@@ -79,9 +83,14 @@ export class AuthService {
 
     const { passwordHash: _, ...userWithoutPassword } = user;
 
+    // Generate JWT token
+    const payload = { sub: user.id, email: user.email, role: user.role };
+    const accessToken = await this.jwtService.signAsync(payload);
+
     return {
       success: true,
       message: 'Login successful',
+      accessToken,
       user: userWithoutPassword,
     };
   }
