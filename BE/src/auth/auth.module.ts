@@ -3,17 +3,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UserModule } from 'src/user/user.module';
+import { jwtConfig } from './config/jwt.config';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @Module({
-  imports: [
-    UserModule,
-    JwtModule.register({
-      secret: process.env.JWT_SECRET || 'your-secret-key-change-in-production',
-      signOptions: { expiresIn: '24h' },
-    }),
-  ],
+  imports: [UserModule, JwtModule.register(jwtConfig)],
   controllers: [AuthController],
-  providers: [AuthService],
-  exports: [AuthService],
+  providers: [AuthService, JwtAuthGuard],
+  exports: [AuthService, JwtAuthGuard, JwtModule],
 })
 export class AuthModule { }
