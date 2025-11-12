@@ -2,15 +2,17 @@ import {
   Injectable,
   ConflictException,
   InternalServerErrorException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { UsersService } from '../user/user.service';
 import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 import * as bcrypt from 'bcrypt';
 import { randomUUID } from 'crypto';
 
 @Injectable()
 export class AuthService {
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService) { }
 
   async register(registerDto: RegisterDto) {
     const { email, password, fullName, studentId, emailAlerts } = registerDto;
@@ -60,5 +62,27 @@ export class AuthService {
     } catch (error) {
       throw new InternalServerErrorException('Failed to register user');
     }
+  }
+
+  async login(loginDto: LoginDto) {
+    const { email, password } = loginDto;
+
+    const user = await this.usersService.findByEmail(email);
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const passwordValid = await bcrypt.compare(password, user.passwordHash);
+    if (!passwordValid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    const { passwordHash: _, ...userWithoutPassword } = user;
+
+    return {
+      success: true,
+      message: 'Login successful',
+      user: userWithoutPassword,
+    };
   }
 }
