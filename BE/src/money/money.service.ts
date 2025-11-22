@@ -7,27 +7,6 @@ import { UpdateMoneyDto } from './dto/update-money.dto';
 export class MoneyService {
   private items: Money[] = [];
 
-  constructor() {
-    // mock data
-    const now = new Date();
-    this.items = [
-      {
-        id: 'm1',
-        name: 'Savings Account',
-        amount: 1200,
-        description: 'Primary savings',
-        createdAt: now,
-      },
-      {
-        id: 'm2',
-        name: 'Checking Account',
-        amount: 450,
-        description: 'Daily spending',
-        createdAt: now,
-      },
-    ];
-  }
-
   async create(createDto: CreateMoneyDto): Promise<Money> {
     const now = new Date();
     const newItem: Money = {
