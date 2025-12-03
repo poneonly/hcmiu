@@ -13,7 +13,7 @@ pip install -r requirements.txt
 
 ### Development Mode
 ```bash
-python app.py
+python Python\app.py
 ```
 
 The API will start on `http://localhost:5000` by default.

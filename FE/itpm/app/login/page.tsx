@@ -26,8 +26,9 @@ export default function LoginPage() {
     setLoading(true)
 
     try {
-      const user = await loginUser({ studentId, password })
-      login(user)
+      const result = await loginUser({ studentId, password })
+      // Store both user and credentials
+      login(result.user, result.credentials)
       router.push("/dashboard")
     } catch (err) {
       setError("Invalid credentials. Please try again.")
@@ -64,7 +65,7 @@ export default function LoginPage() {
               <Input
                 id="studentId"
                 type="text"
-                placeholder="STU001"
+                placeholder="ITITIU22xxx"
                 value={studentId}
                 onChange={(e) => setStudentId(e.target.value)}
                 required
@@ -89,7 +90,9 @@ export default function LoginPage() {
               {loading ? "Signing in..." : "Sign In"}
             </Button>
 
-            <p className="text-xs text-center text-muted-foreground mt-4">Demo: Use any Student ID and password</p>
+            <p className="text-xs text-center text-muted-foreground mt-4">
+              Enter your student ID (e.g., ITITIU22xxx) and password
+            </p>
           </form>
         </CardContent>
       </Card>
