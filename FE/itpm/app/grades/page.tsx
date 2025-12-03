@@ -35,6 +35,8 @@ import {
   Tooltip,
   PolarAngleAxis,
 } from "recharts"
+import { Download } from "lucide-react"
+import { exportTranscriptToPDF } from "@/lib/pdf-export"
 
 export default function GradesPage() {
   const router = useRouter()
@@ -209,7 +211,7 @@ export default function GradesPage() {
   }
 
   const getGpaProgressData = () => {
-    if (!gradesData) return []
+    if (!gradesData || !gradesData.gradeProjection) return []
     const cgpa = gradesData.gradeProjection.current_cgpa
     const percentage = (cgpa / 4.0) * 100
     return [
@@ -222,7 +224,7 @@ export default function GradesPage() {
   }
 
   const getCreditsProgressData = () => {
-    if (!gradesData) return []
+    if (!gradesData || !gradesData.gradeProjection) return []
     const total = gradesData.gradeProjection.total_credits
     // Use a fixed target of 150 credits for visualization (or use totalCreditsRequired if available)
     const target = 150
@@ -329,6 +331,21 @@ export default function GradesPage() {
 
   const { studentInfo, semesters, gradeProjection, lastUpdated } = gradesData
 
+  // Safety check for gradeProjection
+  if (!gradeProjection) {
+    return (
+      <ProtectedLayout>
+        <div className="p-8">
+          <Card>
+            <CardContent className="pt-6">
+              <p className="text-muted-foreground">Grade projection data is not available. Please try fetching grades again.</p>
+            </CardContent>
+          </Card>
+        </div>
+      </ProtectedLayout>
+    )
+  }
+
   return (
     <ProtectedLayout>
       <div className="p-8">
@@ -351,6 +368,17 @@ export default function GradesPage() {
                 >
                   Change Credentials
                 </Button>
+                {gradesData && (
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={() => exportTranscriptToPDF(gradesData)}
+                    className="gap-2"
+                  >
+                    <Download className="w-4 h-4" />
+                    Export PDF
+                  </Button>
+                )}
               </div>
               <p className="text-muted-foreground mt-1">
                 {studentInfo.ten_sinh_vien} • {studentInfo.ma_sinh_vien}
@@ -380,8 +408,8 @@ export default function GradesPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">Current CGPA</p>
-                  <p className="text-4xl font-bold mt-1">{gradeProjection.current_cgpa.toFixed(2)}</p>
-                  <p className="text-sm text-muted-foreground mt-1">{gradeProjection.current_classification_en}</p>
+                  <p className="text-4xl font-bold mt-1">{gradeProjection?.current_cgpa?.toFixed(2) || 'N/A'}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{gradeProjection?.current_classification_en || 'N/A'}</p>
                 </div>
                 <div className="w-20 h-20">
                   <ResponsiveContainer width="100%" height="100%">
@@ -406,7 +434,7 @@ export default function GradesPage() {
                 <div
                   className="h-full rounded-full transition-all duration-1000 ease-out"
                   style={{
-                    width: `${(gradeProjection.current_cgpa / 4) * 100}%`,
+                    width: `${gradeProjection?.current_cgpa ? (gradeProjection.current_cgpa / 4) * 100 : 0}%`,
                     background: "linear-gradient(90deg, #3b82f6, #8b5cf6)",
                   }}
                 />
@@ -425,7 +453,7 @@ export default function GradesPage() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">Total Credits</p>
-                  <p className="text-4xl font-bold mt-1">{gradeProjection.total_credits}</p>
+                  <p className="text-4xl font-bold mt-1">{gradeProjection?.total_credits || 0}</p>
                   <p className="text-sm text-muted-foreground mt-1">credits completed</p>
                 </div>
                 <div className="w-20 h-20">
@@ -455,8 +483,8 @@ export default function GradesPage() {
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-500/10" />
             <CardContent className="pt-6 relative">
               <p className="text-sm text-muted-foreground">Classification</p>
-              <p className="text-3xl font-bold mt-1">{gradeProjection.current_classification}</p>
-              <p className="text-sm text-muted-foreground mt-1">{gradeProjection.current_classification_en}</p>
+              <p className="text-3xl font-bold mt-1">{gradeProjection?.current_classification || 'N/A'}</p>
+              <p className="text-sm text-muted-foreground mt-1">{gradeProjection?.current_classification_en || 'N/A'}</p>
               <div className="mt-4">
                 <Badge className="bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200">
                   {semesters.length} Semesters Completed
@@ -549,12 +577,12 @@ export default function GradesPage() {
               <CardHeader>
                 <CardTitle>Grade Classification Projections</CardTitle>
                 <CardDescription>
-                  Based on your current CGPA of {gradeProjection.current_cgpa.toFixed(2)}
+                  Based on your current CGPA of {gradeProjection?.current_cgpa?.toFixed(2) || 'N/A'}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {Object.entries(gradeProjection.projections)
+                  {Object.entries(gradeProjection?.projections || {})
                     .sort(([, a], [, b]) => b.target_min_gpa - a.target_min_gpa)
                     .map(([classification, details]) => (
                       <Card

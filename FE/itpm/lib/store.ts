@@ -15,6 +15,7 @@ interface AuthStore {
   login: (user: User, credentials: Credentials, accessToken: string) => void;
   logout: () => void;
   getCredentials: () => Credentials | null;
+  updateUser: (user: User) => void;
 }
 
 export const useAuthStore = create<AuthStore>()(
@@ -28,6 +29,7 @@ export const useAuthStore = create<AuthStore>()(
         set({ user, credentials, accessToken, isAuthenticated: true }),
       logout: () => set({ user: null, credentials: null, accessToken: null, isAuthenticated: false }),
       getCredentials: () => get().credentials,
+      updateUser: (user: User) => set({ user }),
     }),
     {
       name: "auth-storage",

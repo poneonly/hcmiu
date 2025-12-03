@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 import { User } from './entities/user.entity';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -40,6 +41,37 @@ export class UsersService {
       where: { id },
     });
     return user ? this.mapToEntity(user) : undefined;
+  }
+
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<User> {
+    const existingUser = await this.prisma.user.findUnique({
+      where: { id },
+    });
+
+    if (!existingUser) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+
+    // Check if email is being changed and if it's already taken
+    if (updateUserDto.email && updateUserDto.email !== existingUser.email) {
+      const emailExists = await this.prisma.user.findUnique({
+        where: { email: updateUserDto.email },
+      });
+      if (emailExists) {
+        throw new ConflictException('Email already registered');
+      }
+    }
+
+    const updatedUser = await this.prisma.user.update({
+      where: { id },
+      data: {
+        ...(updateUserDto.email && { email: updateUserDto.email }),
+        ...(updateUserDto.fullName && { fullName: updateUserDto.fullName }),
+        ...(updateUserDto.emailAlerts !== undefined && { emailAlerts: updateUserDto.emailAlerts }),
+      },
+    });
+
+    return this.mapToEntity(updatedUser);
   }
 
   private mapToEntity(prismaUser: any): User {

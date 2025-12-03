@@ -1,0 +1,943 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\geometry{margin=1in}
+
+% Code listing style
+\lstset{
+    language=TypeScript,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=5pt,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+    tabsize=2
+}
+
+% Title formatting
+\titleformat{\section}
+{\Large\bfseries}
+{}
+{0em}
+{}[\titlerule]
+
+\titleformat{\subsection}
+{\large\bfseries}
+{}
+{0em}
+{}
+
+\title{IT Project Management}
+\author{Project Report}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\section*{Group 2 - Project Team Members}
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Student ID} & \textbf{Full Name} \\
+\hline
+ITITIU22198 & Trần Lưu Hồng Phương \\
+\hline
+ITITIU22177 & Nguyễn Quốc Tuấn \\
+\hline
+ITITIU22208 & Nguyễn Phúc Đạt \\
+\hline
+ITITIU22076 & Lương Quang Huy \\
+\hline
+ITCSIU22280 & Nguyễn Quách Dịch Thịnh \\
+\hline
+ITITIU22053 & Nguyễn Đức Hiền \\
+\hline
+\end{tabular}
+\end{center}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\subsection{Project Overview}
+The ITPM system is a comprehensive academic management platform designed to help students organize their academic life. The system provides integrated features for managing tasks, tracking class schedules, monitoring academic grades, and managing expenses. The application follows modern web development practices with a clear separation between frontend and backend components.
+
+\subsection{System Objectives}
+\begin{itemize}
+    \item Provide a unified platform for academic task management
+    \item Enable real-time schedule tracking and synchronization
+    \item Integrate grade tracking with GPA calculation and projections
+    \item Support financial tracking for student expenses and income
+    \item Ensure secure user authentication and data protection
+    \item Deliver responsive and intuitive user interface
+\end{itemize}
+
+\section{System Architecture}
+
+\subsection{Architecture Overview}
+The ITPM system follows a three-tier architecture:
+
+\begin{enumerate}
+    \item \textbf{Presentation Layer}: Next.js frontend application
+    \item \textbf{Application Layer}: NestJS RESTful API backend
+    \item \textbf{Data Layer}: PostgreSQL database with Prisma ORM
+\end{enumerate}
+
+\subsection{Technology Stack}
+
+\subsubsection{Backend Technologies}
+\begin{itemize}
+    \item \textbf{Framework}: NestJS 11.0.1
+    \item \textbf{Language}: TypeScript 5.7.3
+    \item \textbf{Database}: PostgreSQL
+    \item \textbf{ORM}: Prisma 6.19.0
+    \item \textbf{Authentication}: JWT (JSON Web Tokens) with bcrypt
+    \item \textbf{Validation}: class-validator
+    \item \textbf{Testing}: Jest
+\end{itemize}
+
+\subsubsection{Frontend Technologies}
+\begin{itemize}
+    \item \textbf{Framework}: Next.js 16.0.0
+    \item \textbf{UI Library}: React 19.2.0
+    \item \textbf{Language}: TypeScript 5
+    \item \textbf{Styling}: Tailwind CSS 4.1.9
+    \item \textbf{UI Components}: Radix UI primitives
+    \item \textbf{State Management}: Zustand 5.0.8
+    \item \textbf{Charts}: Recharts 2.15.4
+    \item \textbf{Forms}: React Hook Form 7.60.0
+    \item \textbf{Notifications}: Sonner 1.7.4
+    \item \textbf{PDF Generation}: jsPDF, jspdf-autotable
+\end{itemize}
+
+\subsubsection{External Services}
+\begin{itemize}
+    \item \textbf{Grade Scraping}: Python Flask API (EduSoft integration)
+    \item \textbf{Database}: PostgreSQL
+\end{itemize}
+
+\section{Backend Implementation}
+
+\subsection{Project Structure}
+The backend follows NestJS modular architecture:
+
+\begin{lstlisting}[caption=Backend Directory Structure]
+BE/
+├── src/
+│   ├── auth/          # Authentication module
+│   ├── user/          # User management module
+│   ├── tasks/         # Task management module
+│   ├── schedule/      # Schedule management module
+│   ├── money/         # Financial tracking module
+│   ├── prisma/        # Prisma service and module
+│   └── main.ts        # Application entry point
+├── prisma/
+│   └── schema.prisma  # Database schema definition
+└── test/              # E2E tests
+\end{lstlisting}
+
+\subsection{Core Modules}
+
+\subsubsection{Authentication Module}
+The authentication module handles user registration and login:
+
+\begin{itemize}
+    \item \textbf{Registration}: Creates new user accounts with password hashing
+    \item \textbf{Login}: Validates credentials and issues JWT tokens
+    \item \textbf{Password Security}: Uses bcrypt with 10 salt rounds
+    \item \textbf{Token Management}: JWT-based authentication with configurable expiration
+\end{itemize}
+
+Key features:
+\begin{itemize}
+    \item Email and Student ID uniqueness validation
+    \item Password hashing using bcrypt
+    \item JWT token generation and validation
+    \item Role-based access control (student role by default)
+\end{itemize}
+
+\subsubsection{User Module}
+Manages user profile and account information:
+
+\textbf{Features}:
+\begin{itemize}
+    \item User CRUD operations
+    \item Profile viewing and editing
+    \item Email verification status tracking
+    \item User preferences management (email alerts)
+    \item Profile update with validation
+\end{itemize}
+
+\textbf{API Endpoints}:
+\begin{itemize}
+    \item \texttt{GET /user/:id} - Get user profile (protected)
+    \item \texttt{PUT /user/:id} - Update user profile (protected)
+\end{itemize}
+
+\textbf{Update Capabilities}:
+\begin{itemize}
+    \item Update email address (with uniqueness validation)
+    \item Update full name
+    \item Toggle email alerts preference
+    \item Student ID is read-only (cannot be changed)
+\end{itemize}
+
+\subsubsection{Tasks Module}
+Comprehensive task management functionality:
+
+\textbf{Task Model}:
+\begin{itemize}
+    \item Title, Course, Due Date
+    \item Status: PENDING, COMPLETED
+    \item Priority: LOW, MEDIUM, HIGH
+    \item Reminder flag
+    \item User association
+\end{itemize}
+
+\textbf{API Endpoints}:
+\begin{itemize}
+    \item \texttt{POST /tasks} - Create new task
+    \item \texttt{GET /tasks} - Get all tasks
+    \item \texttt{GET /tasks/:id} - Get task by ID
+    \item \texttt{PUT /tasks/:id} - Update task (supports partial updates)
+    \item \texttt{DELETE /tasks/:id} - Delete task
+\end{itemize}
+
+\textbf{Update Features}:
+\begin{itemize}
+    \item Edit task title, course, due date
+    \item Change priority level
+    \item Toggle reminder status
+    \item Update task status (pending/completed)
+    \item All fields are optional in update DTO for flexible editing
+\end{itemize}
+
+\subsubsection{Schedule Module}
+Manages class schedules and recurring events:
+
+\textbf{Schedule Model}:
+\begin{itemize}
+    \item Course name and code
+    \item Professor, Room, Time
+    \item Day of week
+    \item Recurring flag
+    \item User association
+\end{itemize}
+
+\textbf{API Endpoints}:
+\begin{itemize}
+    \item \texttt{POST /schedule} - Create schedule event
+    \item \texttt{GET /schedule} - Get all schedules
+    \item \texttt{GET /schedule/:id} - Get schedule by ID
+    \item \texttt{PUT /schedule/:id} - Update schedule event
+    \item \texttt{DELETE /schedule/:id} - Delete schedule event
+\end{itemize}
+
+\textbf{Update Features}:
+\begin{itemize}
+    \item Edit course name, code, professor, room
+    \item Update time and day
+    \item Toggle recurring status
+    \item All fields are optional in update DTO
+\end{itemize}
+
+\subsubsection{Money Module}
+Financial tracking for expenses and income:
+
+\textbf{Money Model}:
+\begin{itemize}
+    \item Name, Amount, Description
+    \item Type: EXPENSE, INCOME
+    \item User association
+    \item Timestamps
+\end{itemize}
+
+\subsection{Database Schema}
+
+\subsubsection{Prisma Schema}
+The database schema is defined using Prisma Schema Language:
+
+\begin{lstlisting}[caption=Database Models]
+model User {
+  id          String   @id @default(uuid())
+  email       String   @unique
+  passwordHash String
+  fullName    String
+  studentId   String   @unique
+  role        String   @default("student")
+  verified    Boolean  @default(false)
+  emailAlerts Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  money Money[]
+  tasks Task[]
+  schedules Schedule[]
+}
+
+model Task {
+  id          String      @id @default(uuid())
+  title       String
+  course      String?
+  dueDate     DateTime?
+  status      TaskStatus  @default(PENDING)
+  priority    TaskPriority @default(MEDIUM)
+  reminder    Boolean     @default(false)
+  userId      String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  
+  user User? @relation(fields: [userId], references: [id])
+}
+
+enum TaskStatus {
+  PENDING
+  COMPLETED
+}
+
+enum TaskPriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model Schedule {
+  id          String   @id @default(uuid())
+  course      String
+  code        String?
+  professor   String?
+  room        String?
+  time        String
+  day         String
+  isRecurring Boolean  @default(false)
+  userId      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  user User? @relation(fields: [userId], references: [id])
+}
+
+model Money {
+  id          String    @id @default(uuid())
+  name        String
+  amount      Float
+  type        MoneyType
+  description String?
+  userId      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  user User? @relation(fields: [userId], references: [id])
+}
+
+enum MoneyType {
+  EXPENSE
+  INCOME
+}
+\end{lstlisting}
+
+\subsubsection{Database Relationships}
+\begin{itemize}
+    \item \textbf{User → Tasks}: One-to-Many (Cascade delete)
+    \item \textbf{User → Schedules}: One-to-Many (Cascade delete)
+    \item \textbf{User → Money}: One-to-Many (Cascade delete)
+\end{itemize}
+
+\subsection{API Configuration}
+
+\subsubsection{CORS Configuration}
+The backend is configured to accept requests from the frontend:
+
+\begin{lstlisting}[caption=CORS Setup]
+app.enableCors({
+  origin: ['http://localhost:3001', ...],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+});
+\end{lstlisting}
+
+\subsubsection{Server Configuration}
+\begin{itemize}
+    \item Default port: 4000
+    \item Environment-based configuration
+    \item Development and production modes
+\end{itemize}
+
+\section{Frontend Implementation}
+
+\subsection{Project Structure}
+The frontend follows Next.js App Router structure:
+
+\begin{lstlisting}[caption=Frontend Directory Structure]
+FE/itpm/
+├── app/
+│   ├── dashboard/     # Dashboard page
+│   ├── tasks/         # Tasks management page
+│   ├── schedule/      # Schedule page
+│   ├── grades/        # Grades page
+│   ├── expenses/      # Expenses page
+│   ├── login/         # Login page
+│   └── register/      # Registration page
+├── components/
+│   ├── ui/            # Reusable UI components
+│   ├── sidebar.tsx    # Navigation sidebar
+│   └── protected-layout.tsx  # Auth wrapper
+└── lib/
+    ├── auth.ts        # Authentication utilities
+    ├── tasks.ts       # Task API functions
+    ├── schedule.ts    # Schedule API functions
+    ├── grades.ts      # Grades utilities
+    ├── money.ts       # Money API functions
+    └── store.ts       # Zustand state management
+\end{lstlisting}
+
+\subsection{Key Features}
+
+\subsubsection{Dashboard}
+The dashboard provides a comprehensive overview with dynamic data:
+
+\textbf{Features}:
+\begin{itemize}
+    \item Current GPA display (with link to grades if not available)
+    \item Upcoming tasks (top 5) - fetched from tasks API
+    \item Today's schedule - dynamically merged from schedule API and tasks due today
+    \item Quick navigation to all features
+    \item Real-time data updates
+\end{itemize}
+
+\textbf{Data Aggregation}:
+\begin{itemize}
+    \item Fetches tasks from \texttt{/tasks} endpoint
+    \item Fetches schedule events from \texttt{/schedule} endpoint
+    \item Merges tasks with due dates into today's schedule
+    \item Filters and sorts data client-side for optimal display
+    \item Shows empty states when no data is available
+\end{itemize}
+
+\subsubsection{Tasks Management}
+Comprehensive task management interface:
+
+\textbf{Features}:
+\begin{itemize}
+    \item Create, Read, Update, Delete tasks
+    \item Filter by status (All, Pending, Completed)
+    \item Priority indicators (Low, Medium, High)
+    \item Due date tracking with visual indicators
+    \item Reminder flags
+    \item Course association
+    \item Task completion toggle
+    \item Edit functionality with dedicated edit dialog
+\end{itemize}
+
+\textbf{UI Components}:
+\begin{itemize}
+    \item Task cards with priority indicators
+    \item Due date color coding (overdue, urgent, normal)
+    \item Edit button (pencil icon) on each task
+    \item Edit dialog for task modification (pre-filled with current values)
+    \item Create task dialog
+    \item Loading states and error handling
+\end{itemize}
+
+\subsubsection{Schedule Management}
+Weekly and yearly schedule views:
+
+\textbf{Features}:
+\begin{itemize}
+    \item Week view with day-by-day breakdown
+    \item Year view with calendar display
+    \item Create, Edit, Delete schedule events
+    \item Task synchronization (tasks with due dates appear in schedule)
+    \item Recurring event support
+    \item Visual distinction between schedule events and task events
+    \item Edit functionality for schedule events
+    \item Dynamic data loading from database
+\end{itemize}
+
+\textbf{Integration}:
+\begin{itemize}
+    \item Tasks with course codes and due dates automatically appear in schedule
+    \item Task events marked with blue background and "Task" badge
+    \item Sync button to refresh schedule from database
+    \item Edit button (pencil icon) for schedule events (not available for task events)
+    \item All events stored in database and persisted across sessions
+\end{itemize}
+
+\textbf{Data Flow}:
+\begin{itemize}
+    \item On page load: Fetches schedule events and tasks from APIs
+    \item Converts pending tasks with course codes to schedule events
+    \item Merges database schedule events with task-derived events
+    \item Updates display in real-time when events are added/edited/deleted
+\end{itemize}
+
+\subsubsection{Grades Management}
+Academic grade tracking with analytics:
+
+\textbf{Features}:
+\begin{itemize}
+    \item EduSoft integration for grade fetching
+    \item Semester-wise grade display with filtering
+    \item GPA calculation and tracking
+    \item Grade distribution charts
+    \item Credits tracking (total credits only, remaining credits removed)
+    \item GPA journey visualization (line chart only, no filled area)
+    \item Grade projection calculator with total credits required field
+    \item Classification projections
+    \item PDF transcript export functionality
+    \item Credential-based grade fetching (EduSoft ID and password)
+\end{itemize}
+
+\textbf{Analytics}:
+\begin{itemize}
+    \item GPA Journey line chart (semester and cumulative) - line only, no area fill
+    \item Grade distribution bar chart
+    \item Credits by grade bar chart
+    \item Quick stats (A, B, C grades count)
+    \item Radial progress indicators
+    \item Proper deduplication ensures accurate grade counts
+\end{itemize}
+
+\textbf{Data Processing}:
+\begin{itemize}
+    \item Deduplication of courses across semesters (by course code)
+    \item Grade to GPA conversion
+    \item Semester GPA calculation
+    \item Cumulative GPA tracking
+    \item Course filtering by semester or all semesters
+    \item Null safety checks for grade projection data
+\end{itemize}
+
+\textbf{PDF Export}:
+\begin{itemize}
+    \item Export academic transcript as PDF using jsPDF
+    \item Includes student information, academic summary, and all semester grades
+    \item Professional formatting with tables and styling
+    \item Automatic page breaks for long transcripts
+    \item Page numbers and generation date
+    \item Filename format: \texttt{Transcript\_\{StudentID\}\_\{Date\}.pdf}
+    \item Semester-wise course listings with GPA calculations
+    \item Color-coded headers and sections
+\end{itemize}
+
+\subsubsection{Expenses Management}
+Financial tracking interface:
+
+\textbf{Features}:
+\begin{itemize}
+    \item Track expenses and income
+    \item Vietnamese Dong (VND) currency display
+    \item Category-based organization
+    \item Transaction history
+    \item Balance calculation
+\end{itemize}
+
+\subsubsection{Profile Management}
+User profile editing interface:
+
+\textbf{Features}:
+\begin{itemize}
+    \item View user profile information
+    \item Edit email address (with uniqueness validation)
+    \item Update full name
+    \item Toggle email alerts preference
+    \item Student ID display (read-only)
+    \item Account status and role display
+    \item Real-time state updates after saving
+    \item Protected route (requires authentication)
+\end{itemize}
+
+\textbf{UI Components}:
+\begin{itemize}
+    \item Profile page with form layout
+    \item Input fields with validation
+    \item Checkbox for email alerts
+    \item Save button with loading state
+    \item Toast notifications for success/error
+    \item Profile link in sidebar navigation
+\end{itemize}
+
+\subsection{State Management}
+
+\subsubsection{Zustand Store}
+The application uses Zustand for global state management:
+
+\begin{lstlisting}[caption=Store Structure]
+interface AuthState {
+  user: User | null
+  credentials: Credentials | null
+  accessToken: string | null
+  isAuthenticated: boolean
+  login: (user: User, credentials: Credentials, accessToken: string) => void
+  logout: () => void
+  getCredentials: () => Credentials | null
+  updateUser: (user: User) => void
+}
+\end{lstlisting}
+
+\textbf{State Persistence}:
+\begin{itemize}
+    \item User data persisted in localStorage
+    \item Credentials stored for EduSoft integration
+    \item Access token for API authentication
+    \item Automatic state restoration on page reload
+\end{itemize}
+
+\subsubsection{Authentication Flow}
+\begin{enumerate}
+    \item User submits login/register form
+    \item API call to backend
+    \item On success, store user and token in Zustand
+    \item Store token in localStorage
+    \item Redirect to dashboard
+    \item Protected routes check authentication status
+\end{enumerate}
+
+\subsection{UI Components}
+
+\subsubsection{Component Library}
+Built using Radix UI primitives and Tailwind CSS:
+
+\begin{itemize}
+    \item \textbf{Button}: Customizable button component
+    \item \textbf{Card}: Container for content sections
+    \item \textbf{Dialog}: Modal dialogs for forms
+    \item \textbf{Input}: Form input fields
+    \item \textbf{Select}: Dropdown select components
+    \item \textbf{Tabs}: Tabbed interface
+    \item \textbf{Badge}: Status indicators
+    \item \textbf{Alert}: Notification alerts
+    \item \textbf{Checkbox}: Checkbox inputs
+    \item \textbf{Skeleton}: Loading placeholders
+    \item \textbf{Toast}: Notification toasts
+\end{itemize}
+
+\subsubsection{Styling}
+\begin{itemize}
+    \item Tailwind CSS utility classes
+    \item Dark mode support via next-themes
+    \item Responsive design (mobile-first)
+    \item Custom color scheme with CSS variables
+    \item Smooth animations and transitions
+\end{itemize}
+
+\section{API Integration}
+
+\subsection{Backend API Endpoints}
+
+\subsubsection{Authentication}
+\begin{longtable}{|l|l|l|p{6cm}|}
+\hline
+\textbf{Method} & \textbf{Endpoint} & \textbf{Description} & \textbf{Request Body} \\
+\hline
+POST & \texttt{/auth/register} & Register new user & email, password, fullName, studentId \\
+POST & \texttt{/auth/login} & User login & email, password \\
+\hline
+\end{longtable}
+
+\subsubsection{User}
+\begin{longtable}{|l|l|l|p{6cm}|}
+\hline
+\textbf{Method} & \textbf{Endpoint} & \textbf{Description} & \textbf{Request Body} \\
+\hline
+GET & \texttt{/user/:id} & Get user profile (protected) & - \\
+PUT & \texttt{/user/:id} & Update user profile (protected) & email?, fullName?, emailAlerts? \\
+\hline
+\end{longtable}
+
+\subsubsection{Tasks}
+\begin{longtable}{|l|l|l|p{6cm}|}
+\hline
+\textbf{Method} & \textbf{Endpoint} & \textbf{Description} & \textbf{Request Body} \\
+\hline
+GET & \texttt{/tasks} & Get all tasks & - \\
+GET & \texttt{/tasks/:id} & Get task by ID & - \\
+POST & \texttt{/tasks} & Create task & title, course, dueDate, status, priority, reminder \\
+PUT & \texttt{/tasks/:id} & Update task & title, course, dueDate, status, priority, reminder \\
+DELETE & \texttt{/tasks/:id} & Delete task & - \\
+\hline
+\end{longtable}
+
+\subsubsection{Schedule}
+\begin{longtable}{|l|l|l|p{6cm}|}
+\hline
+\textbf{Method} & \textbf{Endpoint} & \textbf{Description} & \textbf{Request Body} \\
+\hline
+GET & \texttt{/schedule} & Get all schedules & - \\
+GET & \texttt{/schedule/:id} & Get schedule by ID & - \\
+POST & \texttt{/schedule} & Create schedule & course, code, professor, room, time, day \\
+PUT & \texttt{/schedule/:id} & Update schedule & course, code, professor, room, time, day \\
+DELETE & \texttt{/schedule/:id} & Delete schedule & - \\
+\hline
+\end{longtable}
+
+\subsubsection{Money}
+\begin{longtable}{|l|l|l|p{6cm}|}
+\hline
+\textbf{Method} & \textbf{Endpoint} & \textbf{Description} & \textbf{Request Body} \\
+\hline
+GET & \texttt{/money} & Get all transactions & - \\
+POST & \texttt{/money} & Create transaction & name, amount, type, description \\
+PUT & \texttt{/money/:id} & Update transaction & name, amount, type, description \\
+DELETE & \texttt{/money/:id} & Delete transaction & - \\
+\hline
+\end{longtable}
+
+\subsection{External API Integration}
+
+\subsubsection{EduSoft Grade API}
+A Python Flask service handles grade scraping:
+
+\begin{itemize}
+    \item \textbf{Endpoint}: \texttt{POST /api/grades}
+    \item \textbf{Port}: 5000
+    \item \textbf{Functionality}: Scrapes grades from EduSoft portal
+    \item \textbf{Response}: Student info, grades, GPA projections
+\end{itemize}
+
+\section{Security Features}
+
+\subsection{Authentication Security}
+\begin{itemize}
+    \item Password hashing using bcrypt (10 salt rounds)
+    \item JWT token-based authentication
+    \item Token expiration management
+    \item Protected routes with authentication guards
+\end{itemize}
+
+\subsection{Data Validation}
+\begin{itemize}
+    \item Input validation using class-validator
+    \item DTO (Data Transfer Object) pattern
+    \item Type safety with TypeScript
+    \item SQL injection prevention via Prisma ORM
+\end{itemize}
+
+\subsection{CORS Configuration}
+\begin{itemize}
+    \item Whitelist-based origin control
+    \item Credential support for authenticated requests
+    \item Configurable allowed methods and headers
+\end{itemize}
+
+\section{Key Features Summary}
+
+\subsection{Task Management}
+\begin{itemize}
+    \item Create, edit, delete tasks
+    \item Priority levels (Low, Medium, High)
+    \item Status tracking (Pending, Completed)
+    \item Due date tracking with visual indicators
+    \item Course association
+    \item Reminder functionality
+    \item Filtering and sorting
+    \item Edit dialog with pre-filled form
+    \item Real-time updates after editing
+    \item Database persistence
+\end{itemize}
+
+\subsection{Schedule Management}
+\begin{itemize}
+    \item Weekly and yearly calendar views
+    \item Create, edit, delete schedule events
+    \item Recurring event support
+    \item Task synchronization (tasks appear as schedule events)
+    \item Visual distinction between event types (blue badge for tasks)
+    \item Day-based filtering
+    \item Dynamic data loading from database
+    \item Edit functionality for schedule events
+    \item Sync button to refresh from database
+    \item Automatic task-to-schedule conversion
+\end{itemize}
+
+\subsection{Grade Management}
+\begin{itemize}
+    \item EduSoft integration with credential-based fetching
+    \item Semester-wise grade display with filtering
+    \item GPA calculation and tracking
+    \item Grade distribution analytics
+    \item GPA journey visualization (line chart)
+    \item Grade projection calculator with total credits required
+    \item Classification projections
+    \item PDF transcript export
+    \item Course deduplication for accurate analytics
+    \item Null safety and error handling
+\end{itemize}
+
+\subsection{Financial Tracking}
+\begin{itemize}
+    \item Expense and income tracking
+    \item VND currency display
+    \item Transaction history
+    \item Balance calculation
+    \item Category organization
+\end{itemize}
+
+\section{Development Workflow}
+
+\subsection{Backend Development}
+\begin{enumerate}
+    \item Define Prisma schema
+    \item Generate Prisma client: \texttt{npx prisma generate}
+    \item Run migrations: \texttt{npx prisma migrate dev}
+    \item Create NestJS modules (Controller, Service, DTO, Entity)
+    \item Implement business logic
+    \item Test endpoints
+\end{enumerate}
+
+\subsection{Frontend Development}
+\begin{enumerate}
+    \item Create page component
+    \item Define API utility functions
+    \item Implement UI components
+    \item Add state management
+    \item Integrate with backend API
+    \item Test user interactions
+\end{enumerate}
+
+\subsection{Database Management}
+\begin{itemize}
+    \item Schema changes via Prisma migrations
+    \item Database push for development: \texttt{npx prisma db push}
+    \item Prisma Studio for data inspection: \texttt{npx prisma studio}
+\end{itemize}
+
+\section{Testing}
+
+\subsection{Backend Testing}
+\begin{itemize}
+    \item Unit tests with Jest
+    \item E2E tests for API endpoints
+    \item Test coverage reporting
+    \item Test files: \texttt{*.spec.ts}
+\end{itemize}
+
+\subsection{Frontend Testing}
+\begin{itemize}
+    \item Component testing (planned)
+    \item Integration testing (planned)
+    \item E2E testing (planned)
+\end{itemize}
+
+\section{Deployment Considerations}
+
+\subsection{Environment Variables}
+\begin{itemize}
+    \item \texttt{DATABASE\_URL}: PostgreSQL connection string
+    \item \texttt{JWT\_SECRET}: JWT signing secret
+    \item \texttt{PORT}: Server port (default: 4000)
+    \item \texttt{FRONTEND\_URL}: Frontend URL for CORS
+\end{itemize}
+
+\subsection{Production Build}
+\begin{itemize}
+    \item Backend: \texttt{npm run build} then \texttt{npm run start:prod}
+    \item Frontend: \texttt{npm run build} then \texttt{npm start}
+    \item Database: Run Prisma migrations in production
+\end{itemize}
+
+\section{Recent Enhancements}
+
+\subsection{Profile Management}
+\begin{itemize}
+    \item Added user profile editing functionality
+    \item Profile page accessible from sidebar navigation
+    \item Update email, full name, and email alerts preferences
+    \item Email uniqueness validation on update
+    \item Real-time state synchronization after profile updates
+\end{itemize}
+
+\subsection{Edit Functionality}
+\begin{itemize}
+    \item Added edit capability for tasks with dedicated edit dialog
+    \item Added edit capability for schedule events
+    \item Pre-filled forms with current values for easy editing
+    \item Visual edit buttons (pencil icons) on hover
+    \item Task events in schedule cannot be edited (must edit task instead)
+\end{itemize}
+
+\subsection{PDF Transcript Export}
+\begin{itemize}
+    \item Implemented PDF export functionality for academic transcripts
+    \item Professional formatting with student information and grades
+    \item Semester-wise breakdown with course details
+    \item Automatic page breaks and page numbering
+    \item Export button integrated into grades page
+\end{itemize}
+
+\subsection{Dynamic Data Integration}
+\begin{itemize}
+    \item Dashboard now fetches real data from APIs
+    \item Schedule page loads events from database
+    \item Tasks automatically sync to schedule view
+    \item Real-time updates when data changes
+    \item Empty states for better user experience
+\end{itemize}
+
+\subsection{Grades Feature Improvements}
+\begin{itemize}
+    \item Credential-based grade fetching (EduSoft ID and password)
+    \item Course deduplication for accurate analytics
+    \item Removed remaining credits display
+    \item Updated GPA predictor with total credits required field
+    \item Changed GPA journey chart to line-only visualization
+    \item Null safety improvements for error prevention
+\end{itemize}
+
+\section{Conclusion}
+
+The ITPM system successfully integrates multiple academic management features into a unified platform. The architecture follows modern best practices with clear separation of concerns, type safety, and scalable design. The system provides:
+
+\begin{itemize}
+    \item Comprehensive task and schedule management with edit functionality
+    \item Integrated grade tracking with analytics and PDF export
+    \item Financial tracking capabilities
+    \item User profile management with editing capabilities
+    \item Secure authentication and authorization
+    \item Responsive and intuitive user interface
+    \item Real-time data synchronization
+    \item Dynamic dashboard with aggregated data
+    \item Task-to-schedule synchronization
+\end{itemize}
+
+The modular architecture allows for easy extension and maintenance. The use of TypeScript throughout the stack ensures type safety and reduces runtime errors. The Prisma ORM provides a type-safe database layer, while NestJS offers a robust backend framework with built-in features for validation, authentication, and testing.
+
+\section{Future Enhancements}
+
+Potential improvements and extensions:
+
+\begin{itemize}
+    \item Email notifications for task reminders
+    \item Mobile application (React Native)
+    \item Advanced analytics and reporting
+    \item Integration with more external services
+    \item Real-time collaboration features
+    \item Calendar integration (Google Calendar, Outlook)
+    \item Multi-language support
+    \item Dark mode improvements
+    \item Performance optimizations
+\end{itemize}
+
+\end{document}
+

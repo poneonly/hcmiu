@@ -131,3 +131,51 @@ export const getCurrentUser = async (): Promise<User | null> => {
   // This will be handled by the store now
   return null;
 };
+
+// Update user profile
+export interface UpdateUserRequest {
+  email?: string;
+  fullName?: string;
+  emailAlerts?: boolean;
+}
+
+export const updateUserProfile = async (userId: string, data: UpdateUserRequest, token: string): Promise<User> => {
+  try {
+    const url = `${API_URL}/user/${userId}`;
+
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({ message: 'Update failed' }));
+      throw new Error(error.message || error.error || `Update failed: ${response.status} ${response.statusText}`);
+    }
+
+    const result = await response.json();
+
+    // Transform backend user to frontend user format
+    const user: User = {
+      id: result.user.id,
+      studentId: result.user.studentId,
+      name: result.user.fullName,
+      email: result.user.email,
+      fullName: result.user.fullName,
+      role: result.user.role,
+      verified: result.user.verified,
+      preferences: result.user.preferences,
+    };
+
+    return user;
+  } catch (error) {
+    if (error instanceof TypeError && error.message.includes('fetch')) {
+      throw new Error(`Cannot connect to backend at ${API_URL}. Make sure the backend server is running.`);
+    }
+    throw error;
+  }
+};

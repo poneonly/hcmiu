@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { LayoutDashboard, Calendar, CheckSquare, BarChart3, LogOut, BookOpen, DollarSign } from "lucide-react"
+import { LayoutDashboard, Calendar, CheckSquare, BarChart3, LogOut, BookOpen, DollarSign, User } from "lucide-react"
 import { useAuthStore } from "@/lib/store"
 import { Button } from "@/components/ui/button"
 
@@ -51,8 +51,14 @@ export function Sidebar() {
         })}
       </nav>
 
-      {/* Logout Button */}
-      <div className="p-4 border-t border-sidebar-border">
+      {/* Profile and Logout */}
+      <div className="p-4 border-t border-sidebar-border space-y-2">
+        <Link href="/profile">
+          <Button variant="outline" className="w-full justify-start gap-3 bg-transparent">
+            <User className="w-5 h-5" />
+            <span>Profile</span>
+          </Button>
+        </Link>
         <Button variant="outline" className="w-full justify-start gap-3 bg-transparent" onClick={handleLogout}>
           <LogOut className="w-5 h-5" />
           <span>Logout</span>
