@@ -87,7 +87,7 @@ export interface ProcessedGradesData {
   allCourses: GradeRecord[];
 }
 
-const API_URL = "http://localhost:5000";
+const API_URL = process.env.BACKEND_URL || "http://localhost:5000";
 
 // Helper function to convert letter grade to GPA points
 export const gradeToGpa = (grade: string): number => {
