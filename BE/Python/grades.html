@@ -1,0 +1,1107 @@
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script language="javascript" type="text/javascript">
+    
+    var gv = 'False';
+</script>
+<script type="text/javascript" src="https://apis.google.com/js/platform.js?hl=vn" async defer></script>
+<head><meta name="google-signin-scope" content="profile email" /><meta id="metaGoogle" name="google-signin-client_id" /><link id="favicon" rel="shortcut icon" type="image/x-icon" href="Images/Edusoft.gif" />
+    <script src="JS/jquery-2.2.1.js" type="text/javascript"></script>
+    <script src="JS/dialog.js" type="text/javascript"></script>
+    <script src="JS/checkdate.js" type="text/javascript"></script>
+    <script src="JS/balloontip.js" type="text/javascript"></script>
+    <link href="JS/balloontip.css" rel="stylesheet" type="text/css" /><title>
+	Cổng Thông Tin Đào Tạo-Trường ĐH Quốc Tế - ĐHQG TP.HCM-Trường Đại học Quốc tế-DHQTDH
+</title>
+    <script type="text/javascript" language="javascript">
+
+        function ShowMess() {
+            var url = location.href;
+            if (url.indexOf("err=serveroverload", 0) > 0)
+                alert('Server quá tải, vui lòng đăng nhập lại!');
+            else if (url.indexOf("err=sessionreuse", 0) > 0)
+                alert('Vui lòng tắt và mở lại trình duyệt!');
+        }
+
+        $(function () {
+            if (typeof AjaxPro != 'undefined' && AjaxPro && AjaxPro.Request && AjaxPro.Request.prototype) {
+                AjaxPro.Request.prototype.doStateChange = function () {
+                    this.onStateChanged(this.xmlHttp.readyState, this);
+                    if (this.xmlHttp.readyState != 4 || !this.isRunning) {
+                        return;
+                    }
+                    this.duration = new Date().getTime() - this.__start;
+                    if (this.timeoutTimer != null) {
+                        clearTimeout(this.timeoutTimer);
+                    }
+                    var res = this.getEmptyRes();
+                    if (this.xmlHttp.status == 200 && (this.xmlHttp.statusText == "OK" || !this.xmlHttp.statusText)) {
+                        res = this.createResponse(res);
+                    } else {
+                        res = this.createResponse(res, true);
+                        res.error = { Message: this.xmlHttp.statusText, Type: "ConnectFailure", Status: this.xmlHttp.status };
+                    }
+                    this.endRequest(res);
+                };
+            }
+            //gapi.load('auth2', function () {
+            //    gapi.auth2.GoogleUser(u => {
+            //        u.getAuthResponse(a => {
+            //            EduSoft.Web.DefaultMaster.CheckGoogle(a.id_token, x => {
+            //                if (x.value) {
+            //                    self.location = decodeURIComponent(x.value);
+            //                }
+            //            });
+            //        });
+            //    });
+            //}
+        });
+    </script>
+
+<link href="/WebResource.axd?d=eMsgJWu_4xKjpPZ5ET6y4MgASj-Oz_ee-HD3ggsqAxfwtJOeG2JnYCPwaa6gL5IYATbRLOgZ1tifLbWltJGJPsCzHW0IZzKenANMday9uUO7IwCO3sFmcrNiVnQh0kb2FPOGdtC9WqIqZAsVacQxI_HM9MAUNswmWOf-phoNsblOUbduFjx3eNcWK60tUtha0&amp;t=638403871200000000" rel="stylesheet" type="text/css" /><link href="App_Themes/Standard/Standard.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/StyleSheet.css" type="text/css" rel="stylesheet" /></head>
+
+<body background="App_Themes/Standard/Images/background.png" onload="ShowMess()">
+    <form method="post" action="./default.aspx?page=xemdiemthi" id="form1" enctype="multipart/form-data">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=3FEn90cNM9mk2Q6I5PpOU8ZmGQiEMN0HSXNo_APxpabK6sNxOHhLxvKpYtold1AGLAFNEUOaA9QMRp304PUQPb-Qax_zh40Arot-wuXU_001&amp;t=638901788248157332" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+//<![CDATA[
+
+            function ShowMsgBox(type,message,height,width)
+            {
+                if(width == undefined)
+                    width = '340';
+                if(height == undefined)
+                    height = '60';
+                var ajaxModal = $get('ContentPlaceHolder1_ctl00_MessageBox1_ajaxModal');
+                var headerText = $get('ContentPlaceHolder1_ctl00_MessageBox1_lblPopupHeader');
+                $get('ContentPlaceHolder1_ctl00_MessageBox1_lblMessageDisplay').innerHTML = message;
+                $get('ContentPlaceHolder1_ctl00_MessageBox1_panelMessageBox').style.width = width+'px';        
+                $get('ContentPlaceHolder1_ctl00_MessageBox1_panelBody').style.height = height+'px';
+                $get('ContentPlaceHolder1_ctl00_MessageBox1_ctl03').style.width = (parseInt(width) - 70) +'px';  
+                $get('ContentPlaceHolder1_ctl00_MessageBox1_lblMessageDisplay').style.width = (parseInt(width) - 80) +'px'; 
+                var imgType = $get('ContentPlaceHolder1_ctl00_MessageBox1_ctl02');
+                if(type.toLowerCase() == 'success'){
+                    headerText.innerHTML = 'Successful';
+                    imgType.src = '/WebResource.axd?d=zvoqOGstF5hDfasb5-itVkeMDMnNDnIOGUnRH8b9btlTXuxwfm9QpFVNTMck01m0l6uN5JT8KZ_kAYBN7tpLv7H0u9BaZV5Zqdn8U5yoDJ5AcfmZ9j5VmuA9PErtZ6HDgpvVA6T5YbVqPb00i-M7t-Zw4APqOKaxwFjgM8VFz8GgPmmrbHEhkrk-9LCcGndP0&t=638403871200000000';
+                }
+                else if(type.toLowerCase() == 'error'){
+                     headerText.innerHTML = 'Error';
+                     imgType.src = '/WebResource.axd?d=fxwF1cqB65LhnL4cvwTb3ZypGqIETXWEwSrK1U-1MQzsy7g0baipNsV1IpMwpSPpvd3RTDYLwr0SpMoKZAO0juY_DwrpIkhGHXwKftzf7t3DN3klJaHyrFBBpusaSOKjOc7A573sGajowzrRK55xfO1MlaKcaHd7MrCo_GawUFYN0pPb36nzNLGucyWXz97M0&t=638403871200000000';
+                }
+                else if(type.toLowerCase() == 'warning'){
+                     headerText.innerHTML = 'Warning';
+                     imgType.src = '/WebResource.axd?d=entiQxjz1s0G0fdTO_MNLBoggb7sC-dbZlCENn7xQUHNewelpFyHq_fgylXqy04ouUx0J6uEJvT6Nm4vLtmp2PPvTsGojUfN2Iy4QTMwurd-yR1L8VXZoEj_hoP712u4wJD4rIbR6B9cwpR7Nb_ixYk-7AZD4PSsD8z9jSGQ0vIlgmx3PKrjeQ-1Kn2z2GQz0&t=638403871200000000';
+                }
+                else{
+                     headerText.innerHTML = 'Information';
+                     imgType.src = '/WebResource.axd?d=entiQxjz1s0G0fdTO_MNLBoggb7sC-dbZlCENn7xQUHNewelpFyHq_fgylXqy04ouUx0J6uEJvT6Nm4vLtmp2PPvTsGojUfN2Iy4QTMwurd-yR1L8VXZoEj_hoP712u4wJD4rIbR6B9cwpR7Nb_ixYk-7AZD4PSsD8z9jSGQ0vIlgmx3PKrjeQ-1Kn2z2GQz0&t=638403871200000000';
+                }
+               
+                $find('ContentPlaceHolder1_ctl00_MessageBox1_ajaxModal').show();
+                $get('ContentPlaceHolder1_ctl00_MessageBox1_btnOk').focus();
+            }
+            //]]>
+</script>
+
+<script type="text/javascript" src="/ajaxpro/prototype.ashx"></script>
+<script type="text/javascript" src="/ajaxpro/core.ashx"></script>
+<script type="text/javascript" src="/ajaxpro/converter.ashx"></script>
+<script type="text/javascript" src="/ajaxpro/EduSoft.Web.DefaultMaster,EduSoft.Web.ashx"></script>
+<script type="text/javascript" src="/ajaxpro/EduSoft.Web.UC.Logout,EduSoft.Web.ashx"></script>
+<script type="text/javascript" src="/ajaxpro/EduSoft.Web.UC.Footer,EduSoft.Web.ashx"></script>
+
+<script src="/ScriptResource.axd?d=xJgLLhO_n6wCd_PKXaDuR64GIUSwRjKv2LjheqbWv0UlzqtNO0L_qzzVGScgPZCTaiwtUZt5EVP0UabHgiECenv--O68bq0LbOsgEWGAck7f99yWK22-hcDbFT2_DBB2EuPIbpkPrifyClrGBlMzdIU1rxUGiW8PxUSllIDH9_I1&amp;t=5c0e0825" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=EUXa-lYCwmDOt6YOCVT-EdQasvhIBRVCHqYBIlttbQpdQE0bakQuL5C5fuQXgbuApcPklEd7ZwOWjhScisYyBR7pjAtkwjtdKc06QznLxTsn4zFBJfC7EbMXcnvSrNWLUDgrQgkBz8B1gSCyBhKjh0gRGDPP4B8q51aYccFpIGXuMYl2selKMDbnzVoFxlRP0&amp;t=5c0e0825" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=6pXYqz5XghImgLQdhxys7GIc8wFcJ4BLj6a4ZY3wCbU82CVRvBd38tTIXYEDNg1vSlQqDwUvUDhVDkoy9msYd8cBiBZQPeFEC9QjQEw0MRF5jycg5zIXAvCgdid8gvdWTpmtSdwfMImf1krotkINkZzx2axKPyK4_3R5WJPmCBY1&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=zLmyFSyo64CqsXCeRfTsXWxxzt8nmkofY22JQK-8cLL9JflyBbER8A3-eEokJAluIGTFfFn_8NvA57UC1gha7o2zVngbJnCymwS7yfsBV7qpDlOB3VpYhdoFLTa-wGHxOBHnorG6lOD_S8r3mgnq67kLIc58M2princRiharChE1&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=Jddaodz9mSeZw3lZuA3M41j5bJzeuiHU8yCoylmJAfdmiQWuxk_twcDxh7vi7qfRC6sq2vKwkrjK6C_89GmThuyBR_Wm8GBgzTeDKFgDeEuq4jqiWvYgLFArr2A7tovgKEkutn7p5UMMSNAW-TiJ45uiZmqwReiJj-Rj6G47DgMjqaYT6mYIgOqbxk5wGU7b0&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=n-893SSfv54qQtfqdNNI0agK-XN3pWyIWu-qgkszxe2e92_ydzReXXb64XNc5jzG9-KiJEUS9S1hi3q2l0DLah7FUQfuw_0_1a4YurS3rq4-C-XESHiuIUOCSvMQaA-QEOZINrrx9MXPuXSojN1PvC8TYQxdGZbK03RpQbL8yHc1&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=GenC9kUObyS7dlKTkNPnKAKwQOrJHkhCvQt2LjE3y64x5XWr4LpUF1a9FuCjRyp2vj2uCBRRhTeRUbiYNNJxafE6vTd74BoarVPqK9HdFriN3EndZS3tJVjVAtoH1VuJalp8qn6od0NjTI64rceWIoh_nMiLtJLLUc7cE56Vi1w1&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=BhozoYOdEQbTGpeHJuV9cSQYkqZMmqoZ_G9hZsDvS4FwJMoDWzneOfgGZtPRDLPafRnX_RDZLFFq729aLj15C3A4o2d2POJ6YAaPigTnY-P-rzfupliXVqLYoUFGDYuw88no-XTio2QXBL36HaS0Wk5oe5gzpzgqbt2Eg0JB14hSySggofCsv9b-ULeW-iOg0&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=skgzq7Gfoga8ISSBsoQt-_UqrNGsotIAIZ6AKD6UKhXFOA6Ou22NSCjf2J81_9mEroE78wUFDmS8zAVAev0J-Zw5GAS0GNqe-JnUilkKSTLGEYjBG3XoHt7XzW2XDzs-VasT-vhQqOOHrMA7gTnlndo-bDQhNsEF5jNE7tnckvPIE4p5DjYMWG7G7PdTHxhG0&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=OQQs7pqJaEIH6DF70sgZsl7qLxr61-OPG5TlTyWTjzSY6Xpvho3vAfcp0uEWhDCPFLarGoZIfGkehIFCGLQ9SDeS3BtK_tLOwARHblr6npIQreiebi1agRQt87QPxnM-Os3bo0iD9QNQ4KeWm1TvO8M1GzDKTksCazhPyycB8gxJOdPAb9iu_hDRrRnVVlRK0&amp;t=2e070b50" type="text/javascript"></script>
+<script src="/ScriptResource.axd?d=RsHuR6L1iLixV-tRZyUhXr1rFIw4bdw6TZ_mY--M9-5ouFsieUWwI2Y9Lw2yssuRwNHzAnNuy02ctZjkjuMTHO31krTGbOxRkt5M566TGuqXavameJHRnlJYkVHSSDItV7Xi_SXBrQTDEpPOC96pKLP3l5Cq50sARsvtIuFyHJZxV1ihXDKtC_4uzvVp37230&amp;t=2e070b50" type="text/javascript"></script>
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+</div>
+        <div align="center">
+            <div class="base">
+                
+                <table>
+                    <tr>
+                        <td>
+                            
+
+<div style="background-image: url(Images/bg_heading_thongbao.png)">
+    <table width="1000px">
+        <tr>
+            <td height="20px" style="padding-left: 50px" valign="bottom" align="right">
+                
+
+
+
+<script language="javascript" type="text/javascript">
+
+    function changeLanguage_click(obj) {
+        EduSoft.Web.UC.Logout.ChangeLanguage(obj, changeLanguage_callback);
+    }
+    function changeLanguage_callback() {
+        var loc = window.location.href;
+        if (loc.endsWith("/")) loc = loc.substr(0, loc.length - 1);
+        if (loc.toLowerCase().indexOf("default.aspx") <= 0)
+            self.location = loc + "/default.aspx?pgtemp=x";
+        else if (loc.toLowerCase().indexOf("?") <= 0)
+            self.location = loc + "?lang=x";
+        else if (loc.endsWith("&lang=x"))
+            self.location = loc.replace("&lang=x", "&lang=y");
+        else if (loc.endsWith("&lang=y"))
+            self.location = loc.replace("&lang=y", "&lang=x");
+        else
+            self.location = loc + "&lang=x";
+    }
+    function selectFont_change() {
+        var selectmenu = document.getElementById("selectFont");
+        var chosenOption = selectmenu.options[selectmenu.selectedIndex];
+        var font = chosenOption.value;
+        EduSoft.Web.UC.Logout.ChangeFont(font, ChangeFont_callback);
+    }
+    function ChangeFont_callback() {
+        //self.location=window.location;
+    }
+
+    function ConfirmChuaLuu(obj) {
+
+        alert(obj);
+        self.location = "default.aspx?page=dkmonhoc";
+    }
+
+    
+
+    function signOutGoogle(dest) {
+        var url = 'https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue='
+            + decodeURIComponent(dest);
+        document.location = url;
+        
+        //gapi.load('auth2', function () {
+        //    gapi.auth2.init();
+        //    var auth = gapi.auth2.GoogleAuth;
+        //    auth.signOut().then(function () {
+        //        location = decodeURIComponent(dest) + 'page=gioithieu';
+        //    });
+        //});
+    }
+</script>
+
+<div id="Header1_Logout1_dLog" class="logout" style="text-align: right; margin-bottom: 0px">
+    
+    <img src="App_Themes/Standard/Images/US.gif" alt="English" onclick="changeLanguage_click('_us')"
+        id="imgUS" title="English" />
+    <img src="App_Themes/Standard/Images/VI.gif" alt="Vietnamese" onclick="changeLanguage_click('_vi')"
+        id="imgVi" title="Vietnamese" />
+    <span id="Header1_Logout1_lblNguoiDung" class="Label" style="color:#FF3300;font-size:12px;font-weight:bold;">Chào bạn Trần Lưu Hồng Phương (ITITIU22198)</span>&nbsp;<a id="Header1_Logout1_lbtnThongBao" href="javascript:__doPostBack(&#39;ctl00$Header1$Logout1$lbtnThongBao&#39;,&#39;&#39;)" style="color:#FF3300;font-size:12px;font-style:italic;font-family: 'Tahoma', Times, serif">Xem thông báo</a><span id="Header1_Logout1_lblXiet1" class="Label" style="color:#FF3300;"> | </span>
+    <a id="Header1_Logout1_lbtnChangePass" href="javascript:__doPostBack(&#39;ctl00$Header1$Logout1$lbtnChangePass&#39;,&#39;&#39;)" style="color:#FF3300;font-size:12px;font-weight:bold;font-family: 'Tahoma', Times, serif">Thay đổi mật khẩu</a>
+    <span id="Header1_Logout1_lblXiet2" class="Label" style="color:#FF3300;"> | </span>
+    <a id="Header1_Logout1_lbtnLogOut" href="javascript:__doPostBack(&#39;ctl00$Header1$Logout1$lbtnLogOut&#39;,&#39;&#39;)" style="color:#FF3300;font-size:10pt;font-weight:bold;font-family: 'Tahoma', Times, serif">Thoát</a>
+    &nbsp;<select id="selectFont" style="font-size: 11px; width: 100px; color: #000080;"
+        onchange="selectFont_change()">
+        <option value="uni">-------Font-------</option>
+        <option value="uni" selected>Font Unicode</option>
+        <option value="abc" >Font ABC</option>
+        <option value="vni" >Font Vni</option>
+        <option value="not" >Text không
+            dấu</option>
+    </select>
+</div>
+
+            </td>
+        </tr>
+    </table>
+</div>
+
+                            
+
+<style type="text/css">
+    .styleApplication {
+        font-size: 26;
+        font-weight: bold;
+    }
+
+    @font-face {
+        font-family: 'myriadpro';
+        src: url('js/myriadpro-bold.otf');
+    }
+
+    .menufontdhxd {
+        font-family: 'myriadpro';
+        font-size: 14px;
+    }
+</style>
+
+<div class="left-menu">
+    <div class="right-menu">
+
+        <div class="main-menu" style="height: 110px">
+
+            <div id="menu_pnlGioithieu" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=gioithieu">
+                        <span id="menu_lblTrangChu" class="Label">TRANG CHỦ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            
+
+            
+
+            <div id="menu_pnDangKyMonHoc" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=dkmonhoc">
+                        <span id="menu_lblDangKyMonHoc" class="Label">ĐĂNG KÝ MÔN HỌC</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            <div id="menu_thoikhoabieu" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=thoikhoabieu">
+                        <span id="menu_lblThoiKhoaBieu" class="Label">XEM TKB</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            <div id="menu_xemlichthi" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemlichthi">
+                        <span id="menu_lblXemLichThi" class="Label">LỊCH THI CUỐI KỲ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+            <div id="menu_xemlichthigk" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemlichthigk">
+                        <span id="menu_lblXemLichThiGK" class="Label">LỊCH THI GIỮA KỲ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+
+
+            
+
+            
+
+            <div id="menu_xemhocphi" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemhocphi">
+                        <span id="menu_lblXemHocPhi" class="Label">XEM HỌC PHÍ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            <div id="menu_xemdiemthi" class="over-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemdiemthi">
+                        <span id="menu_lblXemDiem" class="Label">XEM ĐIỂM</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+
+            
+
+            
+
+            
+
+            
+
+            <div id="menu_pnlXemCTDTKhoi" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=ctdtkhoisv">
+                        <span id="menu_lblXemCTDTKhoiSV" class="Label">XEM CTĐT</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            <div id="menu_pnlXemMonTienQuyet" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=xemmontienquyet">
+                        <span id="menu_lblXemMonTQ" class="Label">XEM MÔN TQ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            
+
+            <div id="menu_thaydoittcn" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=thaydoittcn">
+                        <span id="menu_lblThayDoiTTCN" class="Label">SỬA TT CÁ NHÂN</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            <div id="menu_ykiensinhvien" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href="Default.aspx?page=ykiensinhvien">
+                        <span id="menu_lblykiensinhvien" class="Label">GÓP Ý KIẾN</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+
+
+            
+
+
+
+            
+
+
+
+
+            
+
+            
+
+            <div id="menu_pnlSinhVienDanhGia" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a id="menu_lkDanhgiaGV" href="javascript:__doPostBack(&#39;ctl00$menu$lkDanhgiaGV&#39;,&#39;&#39;)"><span id="menu_lblDanhGiaTrucTuyen" class="Label">ĐÁNH GIÁ GIẢNG DẠY</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+
+
+            
+
+
+            
+
+            
+
+            
+
+            
+
+            
+
+
+
+            
+
+            
+
+            
+
+            
+            
+            
+
+             
+
+            
+
+
+            
+
+            
+            
+            
+            
+
+            
+
+            
+
+            
+            
+            
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            <div id="menu_pnlHDDT" class="out-menu">
+	
+                <div class="left"></div>
+                <div class="center" style="white-space: nowrap">
+                    <a href='Default.aspx?page=hddt'>
+                        <span id="menu_lblHoaDonDT" class="Label">HÓA ĐƠN ĐIỆN TỬ</span></a>
+                </div>
+                <div class="right"></div>
+            
+</div>
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+
+            
+
+            
+
+
+            
+
+            
+
+            
+
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+            
+
+
+            
+            
+
+            
+            
+            
+
+            
+            
+        </div>
+
+    </div>
+
+</div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="500px" valign="top">
+                            
+<script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$ContentPlaceHolder1$ctl00$ScriptManager1', 'form1', [], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+<span id="ContentPlaceHolder1_ctl00_MessageBox1"><a id="ContentPlaceHolder1_ctl00_MessageBox1_lbTarget" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$ctl00$MessageBox1$lbTarget&#39;,&#39;&#39;)"></a><div id="ContentPlaceHolder1_ctl00_MessageBox1_panelMessageBox" class="confirmBox" style="display:none">
+	<div id="ContentPlaceHolder1_ctl00_MessageBox1_panelHeader" class="header" style="background: url(Images/header.png);repeat-x 0px -200px;">
+		<div class="msg">
+			<span id="ContentPlaceHolder1_ctl00_MessageBox1_lblPopupHeader" class="Label" style="color:White;font-family:Arial Black;"></span>
+		</div><input type="image" name="ctl00$ContentPlaceHolder1$ctl00$MessageBox1$imgCloseButton" id="ContentPlaceHolder1_ctl00_MessageBox1_imgCloseButton" class="close" src="/WebResource.axd?d=PwQTBIEc948XQGG6L0l8I7o-YDq-DhcNiL8yYV5s7iL7136RiabHd1ekkC6whUwLj7MdBB3WVUOHU3I_5K4bkOTgbKodGTaVarwriMcYkepaOUYzzlF25mtNKQTWW90wL5n3MzoKddDYlQasL_KuViT__RzNeNs0IyZvbrJsv22F2ocskBLX48Kw6bOH_dZ70&amp;t=638403871200000000" />
+	</div><div id="ContentPlaceHolder1_ctl00_MessageBox1_panelBody" class="body" style="background-color:#E1E5F0;">
+		<div class="body-left" style="background-color:#E1E5F0;">
+			<img id="ContentPlaceHolder1_ctl00_MessageBox1_ctl02" src="" />
+		</div><div id="ContentPlaceHolder1_ctl00_MessageBox1_ctl03" class="body-right" style="background-color:#E1E5F0;">
+			<span id="ContentPlaceHolder1_ctl00_MessageBox1_lblMessageDisplay" class="Label" style="font-family:Tahoma;color:#263F75;"></span>
+		</div>
+	</div><div id="ContentPlaceHolder1_ctl00_MessageBox1_panelFooter" class="footer" style="background-color:#E1E5F0;">
+		<div class="right" style="background-color:#E1E5F0;">
+			<input type="image" name="ctl00$ContentPlaceHolder1$ctl00$MessageBox1$btnOk" id="ContentPlaceHolder1_ctl00_MessageBox1_btnOk" class="button_small_active" src="/WebResource.axd?d=lSXO9BwBXcTd_Xlvw9Y-b6ixmShFxibORUqrR2PcrBRqbND8lxHmOOj-FD92wEHplZ4i4CWJnD_GYLa3TofwcJ2XWT9yqB_Rz_Ef-Dmi7Xqa6jhnsdGNpLUuLPO7gskQCUsbjw7QC1HCinHmC1AgdPe1-1WJFCR9inr1zvGcXEn6uAHsNhbccrNJ5EmWEQql0&amp;t=638403871200000000" style="height:22px;width:70px;" />
+		</div>
+	</div>
+</div></span>
+
+
+<style type="text/css">
+    .style1 {
+        font-size: large;
+        font-weight: bold;
+    }
+
+    .auto-style1 {
+        font-weight: bold;
+    }
+</style>
+
+<div id="ContentPlaceHolder1_ctl00_pnlNganh" style="width:100%;margin: 5px 0px 5px 0px; text-align: center;">
+	
+    
+    &nbsp;&nbsp;&nbsp;
+        
+
+</div>
+
+
+
+<div class="infor-member" align="center" id="id_form">
+    <div class="top"></div>
+    <div class="center">
+        <table cellpadding="0" cellspacing="1">
+            <tr>
+                <td style="text-align: left; width: 150px">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_MaSinhVien" class="Label">Mã sinh viên</span>
+                </td>
+                <td class="Left" style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lblMaSinhVien" class="Label" style="font-weight:bold;">ITITIU22198</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_TenSinhVien" class="Label">Tên sinh viên</span>
+                </td>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lblTenSinhVien" class="Label" style="font-weight:bold;">Trần Lưu Hồng Phương</span></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_txtPhai" class="Label" style="text-align: center">Phái</span>
+                </td>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lblPhai" class="Label">Nữ</span></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_NoiSinh" class="Label" style="text-align: center">Nơi sinh</span>
+                </td>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lblNoiSinh" class="Label">Tỉnh Quảng Ngãi</span></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_Lop" class="Label" style="text-align: center">Lớp</span>
+                </td>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lblLop" class="Label">ITIT22NE41( )</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_Nganh" class="Label">Ngành</span>
+                </td>
+                <td class="style1" style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lbNganh" class="Label">Information Technology</span></td>
+            </tr>
+            
+            <tr>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_Khoa" class="Label">Khoa</span>
+                </td>
+                <td class="style1" style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lblKhoa" class="Label">Computer Science & Engineering</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_HeDaoTao" class="Label">Hệ đào tạo</span>
+                </td>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lblHeDaoTao" class="Label">Đại học</span>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_Khoahoc" class="Label">Khóa học</span>
+                </td>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lblKhoaHoc" class="Label" style="font-weight:bold;">2022-2026</span></td>
+            </tr>
+            <tr>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_CVHT" class="Label">Cố vấn học tập</span>
+                </td>
+                <td style="text-align: left">
+                    <span id="ContentPlaceHolder1_ctl00_ucThongTinSV_lblCVHT" class="Label" style="font-weight:bold;">Nguyễn Trung Nghĩa(0605)</span></td>
+            </tr>
+
+
+            
+        </table>
+    </div>
+    <div class="bottom">
+    </div>
+</div>
+
+<span id="ContentPlaceHolder1_ctl00_lblThongbao" class="Label"></span>
+
+<div id="ContentPlaceHolder1_ctl00_pnlXemDiemChung">
+	
+    <center>
+<a id="ContentPlaceHolder1_ctl00_lnkChangeview2" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$ctl00$lnkChangeview2&#39;,&#39;&#39;)" style="color:Blue;font-weight:bold;">Học kỳ 1 Năm học 2025</a>
+<br />
+<span id="ContentPlaceHolder1_ctl00_lblChonHK" class="Label">Nhập học kỳ xem điểm thi (vd 20061):</span> &nbsp;&nbsp; <input name="ctl00$ContentPlaceHolder1$ctl00$txtChonHK" type="text" id="ContentPlaceHolder1_ctl00_txtChonHK" class="TextBox" /> 
+    <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnChonHK" value="Xem" id="ContentPlaceHolder1_ctl00_btnChonHK" class="DefaultButton" />
+
+</center>
+
+    <table>
+        <tr>
+            <td align="left">
+                <span id="ContentPlaceHolder1_ctl00_lblThongBaoMonChuaDG" class="Label" style="color:Red;font-size:13px;"></span></td>
+        </tr>
+        <tr>
+            <td>
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="ContentPlaceHolder1_ctl00_div1" class="GridViewContainer" style="border-width: thin; height: 600px;">
+                    <table class="view-table" cellpadding="0" style="border-style:Solid;">
+		<tr class="title-diem" style="border-color:Blue;">
+			<td title="Số thứ tự" align="center" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">STT</span></td><td title="Mã môn học" align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">Mã Môn</span></td><td title="Tên môn học" align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Tên Môn</span></td><td title="Số tín chỉ" align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">TC</span></td><td title="Phần trăm quá trình" align="center" style="width:40px;"><span class="Label" style="display:inline-block;width:40px;">% QT</span></td><td title="Phần trăm kiểm tra" align="center" style="width:40px;"><span class="Label" style="display:inline-block;width:40px;">% KT</span></td><td title="Phần trăm thi" align="center" style="width:40px;"><span class="Label" style="display:inline-block;width:40px;">% Thi</span></td><td title="Bài tập" align="center"><span class="Label">Bài tập</span></td><td title="Kiểm tra" align="center"><span class="Label">Kiểm tra</span></td><td title=" điểm thi lần 1" align="center"><span class="Label">Thi L1</span></td><td title=" điểm tổng kết lần 1 (hệ 10/100)" align="center"><span class="Label">TK1(10)</span></td><td title=" điểm tổng kết (hệ 10/100)" align="center"><span class="Label">TK(10)</span></td><td title=" điểm tổng kết lần 1 (điểm chữ)" align="center"><span class="Label">TK1(CH)</span></td><td title=" điểm tổng kết (điểm chữ)" align="center"><span class="Label">TK(CH)</span></td>
+		</tr><tr class="title-hk-diem" style="height:20px;">
+			<td align="left" colspan="14"><span class="Label">Học kỳ 1 - Năm học 2022-2023</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">1</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PT001IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Physical Training 1</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">10</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">60</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="94" align="center"><span class="Label">94</span></td><td title="94" align="center"><span class="Label">94</span></td><td title="A+" align="center"><span class="Label">A+</span></td><td title="A+" align="center"><span class="Label">A+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">2</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PH014IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Physics 2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="95" align="center"><span class="Label">95</span></td><td title="75" align="center"><span class="Label">75</span></td><td title="95" align="center"><span class="Label">95</span></td><td title="89" align="center"><span class="Label">89</span></td><td title="89" align="center"><span class="Label">89</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">3</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT064IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Introduction to Computing</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="97" align="center"><span class="Label">97</span></td><td title="50" align="center"><span class="Label">50</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="76" align="center"><span class="Label">76</span></td><td title="76" align="center"><span class="Label">76</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">4</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PH013IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Physics 1</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="60" align="center"><span class="Label">60</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="75" align="center"><span class="Label">75</span></td><td title="72" align="center"><span class="Label">72</span></td><td title="72" align="center"><span class="Label">72</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">5</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">MP001IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Military Education</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">0</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">0</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">0</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">100</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="NA" align="center"><span class="Label">NA</span></td><td title="NA" align="center"><span class="Label">NA</span></td><td title="NA" align="center"><span class="Label">NA</span></td><td title="NA" align="center"><span class="Label">NA</span></td><td title="NA" align="center"><span class="Label">NA</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">6</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">MA001IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Calculus 1</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="93" align="center"><span class="Label">93</span></td><td title="50" align="center"><span class="Label">50</span></td><td title="75" align="center"><span class="Label">75</span></td><td title="71" align="center"><span class="Label">71</span></td><td title="71" align="center"><span class="Label">71</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">7</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">EN007IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Writing AE1</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="78" align="center"><span class="Label">78</span></td><td title="59" align="center"><span class="Label">59</span></td><td title="48" align="center"><span class="Label">48</span></td><td title="60" align="center"><span class="Label">60</span></td><td title="60" align="center"><span class="Label">60</span></td><td title="B" align="center"><span class="Label">B</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">8</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">EN008IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Listening AE1</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="75" align="center"><span class="Label">75</span></td><td title="84" align="center"><span class="Label">84</span></td><td title="83" align="center"><span class="Label">83</span></td><td title="81" align="center"><span class="Label">81</span></td><td title="81" align="center"><span class="Label">81</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">9</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">CH011IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Chemistry for Engineers</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="93" align="center"><span class="Label">93</span></td><td title="55" align="center"><span class="Label">55</span></td><td title="39" align="center"><span class="Label">39</span></td><td title="60" align="center"><span class="Label">60</span></td><td title="60" align="center"><span class="Label">60</span></td><td title="B" align="center"><span class="Label">B</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">10</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">CH012IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Chemistry Laboratory</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">1</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">70</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">0</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td title="86" align="center"><span class="Label">86</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="21" align="center"><span class="Label">21</span></td><td title="67" align="center"><span class="Label">67</span></td><td title="67" align="center"><span class="Label">67</span></td><td title="B" align="center"><span class="Label">B</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">71.7</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">2.95</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy:</span><span class="Label">71.7</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">2.95</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ đạt:</span><span class="Label">19</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ tích lũy:</span><span class="Label">19</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Phân loại điểm trung bình HK:</span><span class="Label">Khá</span></td>
+		</tr><tr class="title-hk-diem" style="height:20px;">
+			<td align="left" colspan="14"><span class="Label">Học kỳ 2 - Năm học 2022-2023</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">11</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PE008IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Critical Thinking</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="91" align="center"><span class="Label">91</span></td><td title="67" align="center"><span class="Label">67</span></td><td title="74" align="center"><span class="Label">74</span></td><td title="77" align="center"><span class="Label">77</span></td><td title="77" align="center"><span class="Label">77</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">12</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT116IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">C/C++ Programming</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="94" align="center"><span class="Label">94</span></td><td title="63" align="center"><span class="Label">63</span></td><td title="60" align="center"><span class="Label">60</span></td><td title="71" align="center"><span class="Label">71</span></td><td title="71" align="center"><span class="Label">71</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">13</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">EN011IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Writing AE2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="87" align="center"><span class="Label">87</span></td><td title="56" align="center"><span class="Label">56</span></td><td title="57" align="center"><span class="Label">57</span></td><td title="66" align="center"><span class="Label">66</span></td><td title="66" align="center"><span class="Label">66</span></td><td title="B" align="center"><span class="Label">B</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">14</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">MA003IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Calculus 2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="99" align="center"><span class="Label">99</span></td><td title="70" align="center"><span class="Label">70</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="91" align="center"><span class="Label">91</span></td><td title="91" align="center"><span class="Label">91</span></td><td title="A+" align="center"><span class="Label">A+</span></td><td title="A+" align="center"><span class="Label">A+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">15</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PT002IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Physical Training 2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">10</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">60</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="A+" align="center"><span class="Label">A+</span></td><td title="A+" align="center"><span class="Label">A+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">16</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PH015IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Physics 3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="60" align="center"><span class="Label">60</span></td><td title="85" align="center"><span class="Label">85</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">17</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">EN012IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Speaking AE2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="65" align="center"><span class="Label">65</span></td><td title="69" align="center"><span class="Label">69</span></td><td title="85" align="center"><span class="Label">85</span></td><td title="74" align="center"><span class="Label">74</span></td><td title="74" align="center"><span class="Label">74</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">18</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PH016IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Physics 3 Laboratory</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">1</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">70</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">0</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td title="93" align="center"><span class="Label">93</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="65" align="center"><span class="Label">65</span></td><td title="85" align="center"><span class="Label">85</span></td><td title="85" align="center"><span class="Label">85</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">77.9</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">3.18</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy:</span><span class="Label">74.8</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">3.07</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ đạt:</span><span class="Label">19</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ tích lũy:</span><span class="Label">38</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Phân loại điểm trung bình HK:</span><span class="Label">Khá</span></td>
+		</tr><tr class="title-hk-diem" style="height:20px;">
+			<td align="left" colspan="14"><span class="Label">Học kỳ 1 - Năm học 2023-2024</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">19</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT153IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Discrete Mathematics</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">25</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">45</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="85" align="center"><span class="Label">85</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="A+" align="center"><span class="Label">A+</span></td><td title="A+" align="center"><span class="Label">A+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">20</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">MA023IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Calculus 3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="92" align="center"><span class="Label">92</span></td><td title="63" align="center"><span class="Label">63</span></td><td title="73" align="center"><span class="Label">73</span></td><td title="74" align="center"><span class="Label">74</span></td><td title="74" align="center"><span class="Label">74</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">21</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT079IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Principles of Database Management</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">35</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">25</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="82" align="center"><span class="Label">82</span></td><td title="63" align="center"><span class="Label">63</span></td><td title="88" align="center"><span class="Label">88</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">22</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT067IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Digital Logic Design</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="95" align="center"><span class="Label">95</span></td><td title="73" align="center"><span class="Label">73</span></td><td title="78" align="center"><span class="Label">78</span></td><td title="82" align="center"><span class="Label">82</span></td><td title="82" align="center"><span class="Label">82</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">23</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT099IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Digital Logic Design Laboratory</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">1</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">70</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">0</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td title="97" align="center"><span class="Label">97</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="75" align="center"><span class="Label">75</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="A+" align="center"><span class="Label">A+</span></td><td title="A+" align="center"><span class="Label">A+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">24</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT069IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Object-Oriented Programming</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="83" align="center"><span class="Label">83</span></td><td title="83" align="center"><span class="Label">83</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">81.8</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">3.50</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy:</span><span class="Label">77.2</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">3.21</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ đạt:</span><span class="Label">19</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ tích lũy:</span><span class="Label">57</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Phân loại điểm trung bình HK:</span><span class="Label">Giỏi</span></td>
+		</tr><tr class="title-hk-diem" style="height:20px;">
+			<td align="left" colspan="14"><span class="Label">Học kỳ 2 - Năm học 2023-2024</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">25</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT089IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Computer Architecture</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="83" align="center"><span class="Label">83</span></td><td title="44" align="center"><span class="Label">44</span></td><td title="68" align="center"><span class="Label">68</span></td><td title="65" align="center"><span class="Label">65</span></td><td title="65" align="center"><span class="Label">65</span></td><td title="B" align="center"><span class="Label">B</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">26</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PE015IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Philosophy of Marxism and Leninism</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="85" align="center"><span class="Label">85</span></td><td title="50" align="center"><span class="Label">50</span></td><td title="70" align="center"><span class="Label">70</span></td><td title="71" align="center"><span class="Label">71</span></td><td title="71" align="center"><span class="Label">71</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">27</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT140IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Fundamental Concepts of Data Security</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="99" align="center"><span class="Label">99</span></td><td title="46" align="center"><span class="Label">46</span></td><td title="66" align="center"><span class="Label">66</span></td><td title="70" align="center"><span class="Label">70</span></td><td title="70" align="center"><span class="Label">70</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">28</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT091IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Computer Networks</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="92" align="center"><span class="Label">92</span></td><td title="75" align="center"><span class="Label">75</span></td><td title="83" align="center"><span class="Label">83</span></td><td title="83" align="center"><span class="Label">83</span></td><td title="83" align="center"><span class="Label">83</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">29</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT013IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Algorithms & Data Structures</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="45" align="center"><span class="Label">45</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="76" align="center"><span class="Label">76</span></td><td title="76" align="center"><span class="Label">76</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">30</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PE016IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Political economics of Marxism and Leninism</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="70" align="center"><span class="Label">70</span></td><td title="85" align="center"><span class="Label">85</span></td><td title="70" align="center"><span class="Label">70</span></td><td title="73" align="center"><span class="Label">73</span></td><td title="73" align="center"><span class="Label">73</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">74.0</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">3.04</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy:</span><span class="Label">76.2</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">3.16</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ đạt:</span><span class="Label">26</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ tích lũy:</span><span class="Label">83</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Phân loại điểm trung bình HK:</span><span class="Label">Khá</span></td>
+		</tr><tr class="title-hk-diem" style="height:20px;">
+			<td align="left" colspan="14"><span class="Label">Học kỳ 3 - Năm học 2023-2024</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">31</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PE020IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Engineering Ethics and Professional Skills</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="95" align="center"><span class="Label">95</span></td><td title="87" align="center"><span class="Label">87</span></td><td title="52" align="center"><span class="Label">52</span></td><td title="72" align="center"><span class="Label">72</span></td><td title="72" align="center"><span class="Label">72</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">32</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PE017IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Scientific socialism</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="85" align="center"><span class="Label">85</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="87" align="center"><span class="Label">87</span></td><td title="87" align="center"><span class="Label">87</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="title-hk-diem" style="height:20px;">
+			<td align="left" colspan="14"><span class="Label">Học kỳ 1 - Năm học 2024-2025</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">33</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT093IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Web Application Development</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="94" align="center"><span class="Label">94</span></td><td title="93" align="center"><span class="Label">93</span></td><td title="75" align="center"><span class="Label">75</span></td><td title="86" align="center"><span class="Label">86</span></td><td title="86" align="center"><span class="Label">86</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">34</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PE018IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">History of Vietnamese Communist Party</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="95" align="center"><span class="Label">95</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="73" align="center"><span class="Label">73</span></td><td title="81" align="center"><span class="Label">81</span></td><td title="81" align="center"><span class="Label">81</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">35</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT139IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Scalable and Distributed Computing</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="13" align="center"><span class="Label">13</span></td><td title="96" align="center"><span class="Label">96</span></td><td title="69" align="center"><span class="Label">69</span></td><td title="69" align="center"><span class="Label">69</span></td><td title="B" align="center"><span class="Label">B</span></td><td title="B" align="center"><span class="Label">B</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">36</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT131IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Theoretical Models in Computing</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="97" align="center"><span class="Label">97</span></td><td title="72" align="center"><span class="Label">72</span></td><td title="70" align="center"><span class="Label">70</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">37</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PH012IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Physics 4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="90" align="center"><span class="Label">90</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="70" align="center"><span class="Label">70</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">38</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">MA026IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Probability, Statistic & Random Process</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="100" align="center"><span class="Label">100</span></td><td title="70" align="center"><span class="Label">70</span></td><td title="23" align="center"><span class="Label">23</span></td><td title="53" align="center"><span class="Label">53</span></td><td title="53" align="center"><span class="Label">53</span></td><td title="C" align="center"><span class="Label">C</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">39</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">PE019IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Ho Chi Minh's Thoughts</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">2</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">20</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">50</span></td><td title="93" align="center"><span class="Label">93</span></td><td title="75" align="center"><span class="Label">75</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="83" align="center"><span class="Label">83</span></td><td title="83" align="center"><span class="Label">83</span></td><td title="A" align="center"><span class="Label">A</span></td><td title="A" align="center"><span class="Label">A</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">75.3</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">2.95</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy:</span><span class="Label">76.0</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">3.12</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ đạt:</span><span class="Label">21</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ tích lũy:</span><span class="Label">104</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Phân loại điểm trung bình HK:</span><span class="Label">Khá</span></td>
+		</tr><tr class="title-hk-diem" style="height:20px;">
+			<td align="left" colspan="14"><span class="Label">Học kỳ 2 - Năm học 2024-2025</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">40</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT096IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Net-Centric Programming</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td title="86" align="center"><span class="Label">86</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="69" align="center"><span class="Label">69</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">41</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT117IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">System and Network Security</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="71" align="center"><span class="Label">71</span></td><td title="85" align="center"><span class="Label">85</span></td><td title="80" align="center"><span class="Label">80</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="79" align="center"><span class="Label">79</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">42</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT076IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Software Engineering</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">35</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">25</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="73" align="center"><span class="Label">73</span></td><td title="81" align="center"><span class="Label">81</span></td><td title="76" align="center"><span class="Label">76</span></td><td title="76" align="center"><span class="Label">76</span></td><td title="76" align="center"><span class="Label">76</span></td><td title="B+" align="center"><span class="Label">B+</span></td><td title="B+" align="center"><span class="Label">B+</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">43</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT017IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Operating Systems</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td title="76" align="center"><span class="Label">76</span></td><td title="46" align="center"><span class="Label">46</span></td><td title="50" align="center"><span class="Label">50</span></td><td title="57" align="center"><span class="Label">57</span></td><td title="57" align="center"><span class="Label">57</span></td><td title="C" align="center"><span class="Label">C</span></td><td title="C" align="center"><span class="Label">C</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 10/100:</span><span class="Label">72.8</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình học kỳ hệ 4:</span><span class="Label">2.75</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy:</span><span class="Label">75.6</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Điểm trung bình tích lũy (hệ 4):</span><span class="Label">3.07</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ đạt:</span><span class="Label">16</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Số tín chỉ tích lũy:</span><span class="Label">120</span></td>
+		</tr><tr class="row-diemTK">
+			<td align="left" colspan="14"><span class="Label" style="display:inline-block;width:300px;">Phân loại điểm trung bình HK:</span><span class="Label">Khá</span></td>
+		</tr><tr class="title-hk-diem" style="height:20px;">
+			<td align="left" colspan="14"><span class="Label">Học kỳ 1 - Năm học 2025-2026</span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">44</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT083IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Special Study of the Field</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">0</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">0</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">100</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">45</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT120IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">Entrepreneurship</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">3</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">35</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">25</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="92" align="center"><span class="Label">92</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">46</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT056IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">IT Project Management</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="80" align="center"><span class="Label">80</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr><tr class="row-diem" style="height:20px;">
+			<td align="left" style="width:16px;"><span class="Label" style="display:inline-block;width:16px;">47</span></td><td align="center" style="width:60px;"><span class="Label" style="display:inline-block;width:60px;">IT125IU</span></td><td align="left" style="width:250px;"><span class="Label" style="display:inline-block;width:250px;">System & Network Administration</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">4</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">30</span></td><td align="center" style="width:20px;"><span class="Label" style="display:inline-block;width:20px;">40</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td title="62" align="center"><span class="Label">62</span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td><td align="center"><span class="Label"> &nbsp; </span></td>
+		</tr>
+	</table>
+                    
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <br />
+                <center>
+            <a id="ContentPlaceHolder1_ctl00_lnkChangeview" href="javascript:__doPostBack(&#39;ctl00$ContentPlaceHolder1$ctl00$lnkChangeview&#39;,&#39;&#39;)" style="color:Red;font-weight:bold;">Học kỳ 1 Năm học 2025</a>
+           
+            </center>
+                
+                <br />
+                <span id="ContentPlaceHolder1_ctl00_lblNgayCapNhatDiem" class="Label" style="font-size:14px;">( Dữ liệu được cập nhật vào lúc: 23:31 Ngày: 7/12/2025)</span>
+                <br />
+                
+            </td>
+        </tr>
+    </table>
+
+
+</div>
+
+
+
+
+<center>
+ <h3>
+            <a href="Report/Report_xemDiemThi.aspx" id="ContentPlaceHolder1_ctl00_linkInDiem" target="_blank">IN ĐIỂM THI</a>
+     <br />
+     <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnExport" value="XUẤT FILE EXCEL" id="ContentPlaceHolder1_ctl00_btnExport" class="DefaultButton" />
+ </h3>
+     </center>
+
+<script src="js/jquery-2.2.1.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="js/freeze-table.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".GridViewContainer").freezeTable({
+            'scrollable': true,
+            'rowNum': 1,
+            'fastMode': true
+        });
+    });
+
+    function unFreeze() {
+        var freezeTable = new FreezeTable('.GridViewContainer');
+        freezeTable.destroy();
+        return true;
+    }
+</script>
+
+
+    
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            
+
+<style type="text/css">
+   
+    .style3
+    {
+        width: 70px;
+    }
+    .style4
+    {
+        width: 129px;
+    }
+    .style5
+    {
+        width: 1019px;
+    }
+   
+</style>
+
+<div class="footer">
+<table width="100%"><tr><td align="left" class="style5" >
+<img src="App_Themes/Standard/Images/icon_11c.gif" alt="" />
+<span class="LogoFooter"><span id="Footer1_lblCompany" class="Label">Copyright ©2009 Trường ĐH Quốc Tế - ĐHQG TP.HCM-Trường Đại học Quốc tế. Quản lý bởi Phòng Đào tạo Đại học</span></span>
+</td>
+    
+        <td valign="top"  align="left" class="style4">
+        <img src="App_Themes/Standard/Images/iconHome.png" alt="" align="right"  />    
+        </td>
+        <td align="left" class="style3">
+        <a href="Default.aspx"><span id="Footer1_lbltrangchu" class="Label">Trang Chủ</span></a>
+        </td>
+        
+        
+</tr>
+<tr>
+<td class="style5" >
+    <img src="App_Themes/Standard/Images/icon_11c.gif" alt="" /> 
+    <a href="https://aqtech.vn/" target="_blank"><span id="Footer1_lblCopyRight" class="Label">Thiết kế bởi cty Phần mềm Anh Quân</span></a>
+    
+    
+     
+</td>
+<td align="right" valign="top" class="style4"> 
+    <img src="App_Themes/Standard/Images/topTen.gif" width="15px" alt="" />
+    </td>
+    <td class="style3">
+    <a href="#Top" title="Go to top" style="text-decoration: none; font-family:Tahoma;font-size:8pt">
+    <span id="Footer1_lbltop" class="Label">Đầu Trang</span>
+    </a>
+</td>
+<td align="right"><a href="Default.aspx?page=thongtinsp"><span id="Footer1_lblAbout" class="Label">About</span></a></td>
+</tr>
+
+</table></div>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+    
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.add_init(function() {
+    $create(AjaxControlToolkit.ModalPopupBehavior, {"BackgroundCssClass":"msgbox_messagemodalbackground","CancelControlID":"ContentPlaceHolder1_ctl00_MessageBox1_imgCloseButton","OkControlID":"ContentPlaceHolder1_ctl00_MessageBox1_btnOk","PopupControlID":"ContentPlaceHolder1_ctl00_MessageBox1_panelMessageBox","dynamicServicePath":"/default.aspx","id":"ContentPlaceHolder1_ctl00_MessageBox1_ajaxModal"}, null, null, $get("ContentPlaceHolder1_ctl00_MessageBox1_lbTarget"));
+});
+//]]>
+</script>
+</form>
+    
+</body>
+
+</html>

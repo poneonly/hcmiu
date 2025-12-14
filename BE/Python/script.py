@@ -8,6 +8,10 @@ from bs4 import BeautifulSoup
 import json
 import re
 from typing import Dict, List, Optional
+import urllib3
+
+# Disable SSL warnings (for self-signed certificates)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class EdusoftScraper:
@@ -44,7 +48,7 @@ class EdusoftScraper:
         try:
             # Step 1: Get the login page to retrieve VIEWSTATE
             print("🔄 Fetching login page...")
-            response = self.session.get(f"{self.base_url}/default.aspx")
+            response = self.session.get(f"{self.base_url}/default.aspx", verify=False)
             response.raise_for_status()
             
             # Extract VIEWSTATE
@@ -66,7 +70,8 @@ class EdusoftScraper:
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Origin': self.base_url,
                     'Referer': f"{self.base_url}/default.aspx"
-                }
+                },
+                verify=False
             )
             
             login_response.raise_for_status()
@@ -87,7 +92,7 @@ class EdusoftScraper:
         """Retrieve grades page"""
         try:
             print("📊 Fetching grades page...")
-            response = self.session.get(f"{self.base_url}/default.aspx?page=xemdiemthi")
+            response = self.session.get(f"{self.base_url}/default.aspx?page=xemdiemthi", verify=False)
             response.raise_for_status()
             
             return self.parse_grades(response.text)
@@ -220,7 +225,7 @@ def main():
         scraper.save_to_file(grades_data)
         
         # Also save raw HTML
-        response = scraper.session.get(f"{scraper.base_url}/default.aspx?page=xemdiemthi")
+        response = scraper.session.get(f"{scraper.base_url}/default.aspx?page=xemdiemthi", verify=False)
         scraper.save_html(response.text)
         
     else:

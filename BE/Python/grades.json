@@ -1,0 +1,919 @@
+{
+  "student_info": {
+    "ma_sinh_vien": "ITITIU22198",
+    "ten_sinh_vien": "Trần Lưu Hồng Phương",
+    "lop": "ITIT22NE41( )",
+    "nganh": "Information Technology",
+    "khoa": "Computer Science & Engineering",
+    "phai": "Nữ",
+    "noi_sinh": "Tỉnh Quảng Ngãi",
+    "he_dao_tao": "Đại học",
+    "khoa_hoc": "2022-2026",
+    "co_van_hoc_tap": "Nguyễn Trung Nghĩa(0605)"
+  },
+  "grades": [
+    {
+      "STT": "Học kỳ 1 - Năm học 2022-2023"
+    },
+    {
+      "STT": "1",
+      "Mã Môn": "PT001IU",
+      "Tên Môn": "Physical Training 1",
+      "TC": "3",
+      "% QT": "10",
+      "% KT": "30",
+      "% Thi": "60",
+      "Bài tập": "100",
+      "Kiểm tra": "100",
+      "Thi L1": "90",
+      "TK1(10)": "94",
+      "TK(10)": "94",
+      "TK1(CH)": "A+",
+      "TK(CH)": "A+"
+    },
+    {
+      "STT": "2",
+      "Mã Môn": "PH014IU",
+      "Tên Môn": "Physics 2",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "95",
+      "Kiểm tra": "75",
+      "Thi L1": "95",
+      "TK1(10)": "89",
+      "TK(10)": "89",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "3",
+      "Mã Môn": "IT064IU",
+      "Tên Môn": "Introduction to Computing",
+      "TC": "3",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "97",
+      "Kiểm tra": "50",
+      "Thi L1": "80",
+      "TK1(10)": "76",
+      "TK(10)": "76",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "4",
+      "Mã Môn": "PH013IU",
+      "Tên Môn": "Physics 1",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "60",
+      "Kiểm tra": "80",
+      "Thi L1": "75",
+      "TK1(10)": "72",
+      "TK(10)": "72",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "5",
+      "Mã Môn": "MP001IU",
+      "Tên Môn": "Military Education",
+      "TC": "0",
+      "% QT": "0",
+      "% KT": "0",
+      "% Thi": "100",
+      "Bài tập": "",
+      "Kiểm tra": "",
+      "Thi L1": "NA",
+      "TK1(10)": "NA",
+      "TK(10)": "NA",
+      "TK1(CH)": "NA",
+      "TK(CH)": "NA"
+    },
+    {
+      "STT": "6",
+      "Mã Môn": "MA001IU",
+      "Tên Môn": "Calculus 1",
+      "TC": "4",
+      "% QT": "20",
+      "% KT": "30",
+      "% Thi": "50",
+      "Bài tập": "93",
+      "Kiểm tra": "50",
+      "Thi L1": "75",
+      "TK1(10)": "71",
+      "TK(10)": "71",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "7",
+      "Mã Môn": "EN007IU",
+      "Tên Môn": "Writing AE1",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "78",
+      "Kiểm tra": "59",
+      "Thi L1": "48",
+      "TK1(10)": "60",
+      "TK(10)": "60",
+      "TK1(CH)": "B",
+      "TK(CH)": "B"
+    },
+    {
+      "STT": "8",
+      "Mã Môn": "EN008IU",
+      "Tên Môn": "Listening AE1",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "75",
+      "Kiểm tra": "84",
+      "Thi L1": "83",
+      "TK1(10)": "81",
+      "TK(10)": "81",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "9",
+      "Mã Môn": "CH011IU",
+      "Tên Môn": "Chemistry for Engineers",
+      "TC": "3",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "93",
+      "Kiểm tra": "55",
+      "Thi L1": "39",
+      "TK1(10)": "60",
+      "TK(10)": "60",
+      "TK1(CH)": "B",
+      "TK(CH)": "B"
+    },
+    {
+      "STT": "10",
+      "Mã Môn": "CH012IU",
+      "Tên Môn": "Chemistry Laboratory",
+      "TC": "1",
+      "% QT": "70",
+      "% KT": "0",
+      "% Thi": "30",
+      "Bài tập": "86",
+      "Kiểm tra": "",
+      "Thi L1": "21",
+      "TK1(10)": "67",
+      "TK(10)": "67",
+      "TK1(CH)": "B",
+      "TK(CH)": "B"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 10/100:71.7"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 4:2.95"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy:71.7"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy (hệ 4):2.95"
+    },
+    {
+      "STT": "Số tín chỉ đạt:19"
+    },
+    {
+      "STT": "Số tín chỉ tích lũy:19"
+    },
+    {
+      "STT": "Phân loại điểm trung bình HK:Khá"
+    },
+    {
+      "STT": "Học kỳ 2 - Năm học 2022-2023"
+    },
+    {
+      "STT": "11",
+      "Mã Môn": "PE008IU",
+      "Tên Môn": "Critical Thinking",
+      "TC": "3",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "91",
+      "Kiểm tra": "67",
+      "Thi L1": "74",
+      "TK1(10)": "77",
+      "TK(10)": "77",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "12",
+      "Mã Môn": "IT116IU",
+      "Tên Môn": "C/C++ Programming",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "94",
+      "Kiểm tra": "63",
+      "Thi L1": "60",
+      "TK1(10)": "71",
+      "TK(10)": "71",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "13",
+      "Mã Môn": "EN011IU",
+      "Tên Môn": "Writing AE2",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "87",
+      "Kiểm tra": "56",
+      "Thi L1": "57",
+      "TK1(10)": "66",
+      "TK(10)": "66",
+      "TK1(CH)": "B",
+      "TK(CH)": "B"
+    },
+    {
+      "STT": "14",
+      "Mã Môn": "MA003IU",
+      "Tên Môn": "Calculus 2",
+      "TC": "4",
+      "% QT": "20",
+      "% KT": "30",
+      "% Thi": "50",
+      "Bài tập": "99",
+      "Kiểm tra": "70",
+      "Thi L1": "100",
+      "TK1(10)": "91",
+      "TK(10)": "91",
+      "TK1(CH)": "A+",
+      "TK(CH)": "A+"
+    },
+    {
+      "STT": "15",
+      "Mã Môn": "PT002IU",
+      "Tên Môn": "Physical Training 2",
+      "TC": "3",
+      "% QT": "10",
+      "% KT": "30",
+      "% Thi": "60",
+      "Bài tập": "100",
+      "Kiểm tra": "100",
+      "Thi L1": "100",
+      "TK1(10)": "100",
+      "TK(10)": "100",
+      "TK1(CH)": "A+",
+      "TK(CH)": "A+"
+    },
+    {
+      "STT": "16",
+      "Mã Môn": "PH015IU",
+      "Tên Môn": "Physics 3",
+      "TC": "3",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "90",
+      "Kiểm tra": "60",
+      "Thi L1": "85",
+      "TK1(10)": "79",
+      "TK(10)": "79",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "17",
+      "Mã Môn": "EN012IU",
+      "Tên Môn": "Speaking AE2",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "65",
+      "Kiểm tra": "69",
+      "Thi L1": "85",
+      "TK1(10)": "74",
+      "TK(10)": "74",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "18",
+      "Mã Môn": "PH016IU",
+      "Tên Môn": "Physics 3 Laboratory",
+      "TC": "1",
+      "% QT": "70",
+      "% KT": "0",
+      "% Thi": "30",
+      "Bài tập": "93",
+      "Kiểm tra": "",
+      "Thi L1": "65",
+      "TK1(10)": "85",
+      "TK(10)": "85",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 10/100:77.9"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 4:3.18"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy:74.8"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy (hệ 4):3.07"
+    },
+    {
+      "STT": "Số tín chỉ đạt:19"
+    },
+    {
+      "STT": "Số tín chỉ tích lũy:38"
+    },
+    {
+      "STT": "Phân loại điểm trung bình HK:Khá"
+    },
+    {
+      "STT": "Học kỳ 1 - Năm học 2023-2024"
+    },
+    {
+      "STT": "19",
+      "Mã Môn": "IT153IU",
+      "Tên Môn": "Discrete Mathematics",
+      "TC": "3",
+      "% QT": "25",
+      "% KT": "30",
+      "% Thi": "45",
+      "Bài tập": "100",
+      "Kiểm tra": "90",
+      "Thi L1": "85",
+      "TK1(10)": "90",
+      "TK(10)": "90",
+      "TK1(CH)": "A+",
+      "TK(CH)": "A+"
+    },
+    {
+      "STT": "20",
+      "Mã Môn": "MA023IU",
+      "Tên Môn": "Calculus 3",
+      "TC": "4",
+      "% QT": "20",
+      "% KT": "30",
+      "% Thi": "50",
+      "Bài tập": "92",
+      "Kiểm tra": "63",
+      "Thi L1": "73",
+      "TK1(10)": "74",
+      "TK(10)": "74",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "21",
+      "Mã Môn": "IT079IU",
+      "Tên Môn": "Principles of Database Management",
+      "TC": "4",
+      "% QT": "35",
+      "% KT": "25",
+      "% Thi": "40",
+      "Bài tập": "82",
+      "Kiểm tra": "63",
+      "Thi L1": "88",
+      "TK1(10)": "80",
+      "TK(10)": "80",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "22",
+      "Mã Môn": "IT067IU",
+      "Tên Môn": "Digital Logic Design",
+      "TC": "3",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "95",
+      "Kiểm tra": "73",
+      "Thi L1": "78",
+      "TK1(10)": "82",
+      "TK(10)": "82",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "23",
+      "Mã Môn": "IT099IU",
+      "Tên Môn": "Digital Logic Design Laboratory",
+      "TC": "1",
+      "% QT": "70",
+      "% KT": "0",
+      "% Thi": "30",
+      "Bài tập": "97",
+      "Kiểm tra": "",
+      "Thi L1": "75",
+      "TK1(10)": "90",
+      "TK(10)": "90",
+      "TK1(CH)": "A+",
+      "TK(CH)": "A+"
+    },
+    {
+      "STT": "24",
+      "Mã Môn": "IT069IU",
+      "Tên Môn": "Object-Oriented Programming",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "80",
+      "Kiểm tra": "90",
+      "Thi L1": "80",
+      "TK1(10)": "83",
+      "TK(10)": "83",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 10/100:81.8"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 4:3.50"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy:77.2"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy (hệ 4):3.21"
+    },
+    {
+      "STT": "Số tín chỉ đạt:19"
+    },
+    {
+      "STT": "Số tín chỉ tích lũy:57"
+    },
+    {
+      "STT": "Phân loại điểm trung bình HK:Giỏi"
+    },
+    {
+      "STT": "Học kỳ 2 - Năm học 2023-2024"
+    },
+    {
+      "STT": "25",
+      "Mã Môn": "IT089IU",
+      "Tên Môn": "Computer Architecture",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "83",
+      "Kiểm tra": "44",
+      "Thi L1": "68",
+      "TK1(10)": "65",
+      "TK(10)": "65",
+      "TK1(CH)": "B",
+      "TK(CH)": "B"
+    },
+    {
+      "STT": "26",
+      "Mã Môn": "PE015IU",
+      "Tên Môn": "Philosophy of Marxism and Leninism",
+      "TC": "3",
+      "% QT": "30",
+      "% KT": "20",
+      "% Thi": "50",
+      "Bài tập": "85",
+      "Kiểm tra": "50",
+      "Thi L1": "70",
+      "TK1(10)": "71",
+      "TK(10)": "71",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "27",
+      "Mã Môn": "IT140IU",
+      "Tên Môn": "Fundamental Concepts of Data Security",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "99",
+      "Kiểm tra": "46",
+      "Thi L1": "66",
+      "TK1(10)": "70",
+      "TK(10)": "70",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "28",
+      "Mã Môn": "IT091IU",
+      "Tên Môn": "Computer Networks",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "92",
+      "Kiểm tra": "75",
+      "Thi L1": "83",
+      "TK1(10)": "83",
+      "TK(10)": "83",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "29",
+      "Mã Môn": "IT013IU",
+      "Tên Môn": "Algorithms & Data Structures",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "100",
+      "Kiểm tra": "45",
+      "Thi L1": "80",
+      "TK1(10)": "76",
+      "TK(10)": "76",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "30",
+      "Mã Môn": "PE016IU",
+      "Tên Môn": "Political economics of Marxism and Leninism",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "20",
+      "% Thi": "50",
+      "Bài tập": "70",
+      "Kiểm tra": "85",
+      "Thi L1": "70",
+      "TK1(10)": "73",
+      "TK(10)": "73",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 10/100:74.0"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 4:3.04"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy:76.2"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy (hệ 4):3.16"
+    },
+    {
+      "STT": "Số tín chỉ đạt:26"
+    },
+    {
+      "STT": "Số tín chỉ tích lũy:83"
+    },
+    {
+      "STT": "Phân loại điểm trung bình HK:Khá"
+    },
+    {
+      "STT": "Học kỳ 3 - Năm học 2023-2024"
+    },
+    {
+      "STT": "31",
+      "Mã Môn": "PE020IU",
+      "Tên Môn": "Engineering Ethics and Professional Skills",
+      "TC": "3",
+      "% QT": "30",
+      "% KT": "20",
+      "% Thi": "50",
+      "Bài tập": "95",
+      "Kiểm tra": "87",
+      "Thi L1": "52",
+      "TK1(10)": "72",
+      "TK(10)": "72",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "32",
+      "Mã Môn": "PE017IU",
+      "Tên Môn": "Scientific socialism",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "20",
+      "% Thi": "50",
+      "Bài tập": "85",
+      "Kiểm tra": "80",
+      "Thi L1": "90",
+      "TK1(10)": "87",
+      "TK(10)": "87",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "Học kỳ 1 - Năm học 2024-2025"
+    },
+    {
+      "STT": "33",
+      "Mã Môn": "IT093IU",
+      "Tên Môn": "Web Application Development",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "94",
+      "Kiểm tra": "93",
+      "Thi L1": "75",
+      "TK1(10)": "86",
+      "TK(10)": "86",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "34",
+      "Mã Môn": "PE018IU",
+      "Tên Môn": "History of Vietnamese Communist Party",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "20",
+      "% Thi": "50",
+      "Bài tập": "95",
+      "Kiểm tra": "80",
+      "Thi L1": "73",
+      "TK1(10)": "81",
+      "TK(10)": "81",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "35",
+      "Mã Môn": "IT139IU",
+      "Tên Môn": "Scalable and Distributed Computing",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "90",
+      "Kiểm tra": "13",
+      "Thi L1": "96",
+      "TK1(10)": "69",
+      "TK(10)": "69",
+      "TK1(CH)": "B",
+      "TK(CH)": "B"
+    },
+    {
+      "STT": "36",
+      "Mã Môn": "IT131IU",
+      "Tên Môn": "Theoretical Models in Computing",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "97",
+      "Kiểm tra": "72",
+      "Thi L1": "70",
+      "TK1(10)": "79",
+      "TK(10)": "79",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "37",
+      "Mã Môn": "PH012IU",
+      "Tên Môn": "Physics 4",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "90",
+      "Kiểm tra": "80",
+      "Thi L1": "70",
+      "TK1(10)": "79",
+      "TK(10)": "79",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "38",
+      "Mã Môn": "MA026IU",
+      "Tên Môn": "Probability, Statistic & Random Process",
+      "TC": "3",
+      "% QT": "20",
+      "% KT": "30",
+      "% Thi": "50",
+      "Bài tập": "100",
+      "Kiểm tra": "70",
+      "Thi L1": "23",
+      "TK1(10)": "53",
+      "TK(10)": "53",
+      "TK1(CH)": "C",
+      "TK(CH)": "C"
+    },
+    {
+      "STT": "39",
+      "Mã Môn": "PE019IU",
+      "Tên Môn": "Ho Chi Minh's Thoughts",
+      "TC": "2",
+      "% QT": "30",
+      "% KT": "20",
+      "% Thi": "50",
+      "Bài tập": "93",
+      "Kiểm tra": "75",
+      "Thi L1": "80",
+      "TK1(10)": "83",
+      "TK(10)": "83",
+      "TK1(CH)": "A",
+      "TK(CH)": "A"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 10/100:75.3"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 4:2.95"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy:76.0"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy (hệ 4):3.12"
+    },
+    {
+      "STT": "Số tín chỉ đạt:21"
+    },
+    {
+      "STT": "Số tín chỉ tích lũy:104"
+    },
+    {
+      "STT": "Phân loại điểm trung bình HK:Khá"
+    },
+    {
+      "STT": "Học kỳ 2 - Năm học 2024-2025"
+    },
+    {
+      "STT": "40",
+      "Mã Môn": "IT096IU",
+      "Tên Môn": "Net-Centric Programming",
+      "TC": "4",
+      "% QT": "40",
+      "% KT": "30",
+      "% Thi": "30",
+      "Bài tập": "86",
+      "Kiểm tra": "80",
+      "Thi L1": "69",
+      "TK1(10)": "79",
+      "TK(10)": "79",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "41",
+      "Mã Môn": "IT117IU",
+      "Tên Môn": "System and Network Security",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "71",
+      "Kiểm tra": "85",
+      "Thi L1": "80",
+      "TK1(10)": "79",
+      "TK(10)": "79",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "42",
+      "Mã Môn": "IT076IU",
+      "Tên Môn": "Software Engineering",
+      "TC": "4",
+      "% QT": "35",
+      "% KT": "25",
+      "% Thi": "40",
+      "Bài tập": "73",
+      "Kiểm tra": "81",
+      "Thi L1": "76",
+      "TK1(10)": "76",
+      "TK(10)": "76",
+      "TK1(CH)": "B+",
+      "TK(CH)": "B+"
+    },
+    {
+      "STT": "43",
+      "Mã Môn": "IT017IU",
+      "Tên Môn": "Operating Systems",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "76",
+      "Kiểm tra": "46",
+      "Thi L1": "50",
+      "TK1(10)": "57",
+      "TK(10)": "57",
+      "TK1(CH)": "C",
+      "TK(CH)": "C"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 10/100:72.8"
+    },
+    {
+      "STT": "Điểm trung bình học kỳ hệ 4:2.75"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy:75.6"
+    },
+    {
+      "STT": "Điểm trung bình tích lũy (hệ 4):3.07"
+    },
+    {
+      "STT": "Số tín chỉ đạt:16"
+    },
+    {
+      "STT": "Số tín chỉ tích lũy:120"
+    },
+    {
+      "STT": "Phân loại điểm trung bình HK:Khá"
+    },
+    {
+      "STT": "Học kỳ 1 - Năm học 2025-2026"
+    },
+    {
+      "STT": "44",
+      "Mã Môn": "IT083IU",
+      "Tên Môn": "Special Study of the Field",
+      "TC": "3",
+      "% QT": "0",
+      "% KT": "0",
+      "% Thi": "100",
+      "Bài tập": "",
+      "Kiểm tra": "",
+      "Thi L1": "",
+      "TK1(10)": "",
+      "TK(10)": "",
+      "TK1(CH)": "",
+      "TK(CH)": ""
+    },
+    {
+      "STT": "45",
+      "Mã Môn": "IT120IU",
+      "Tên Môn": "Entrepreneurship",
+      "TC": "3",
+      "% QT": "35",
+      "% KT": "25",
+      "% Thi": "40",
+      "Bài tập": "",
+      "Kiểm tra": "92",
+      "Thi L1": "",
+      "TK1(10)": "",
+      "TK(10)": "",
+      "TK1(CH)": "",
+      "TK(CH)": ""
+    },
+    {
+      "STT": "46",
+      "Mã Môn": "IT056IU",
+      "Tên Môn": "IT Project Management",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "",
+      "Kiểm tra": "80",
+      "Thi L1": "",
+      "TK1(10)": "",
+      "TK(10)": "",
+      "TK1(CH)": "",
+      "TK(CH)": ""
+    },
+    {
+      "STT": "47",
+      "Mã Môn": "IT125IU",
+      "Tên Môn": "System & Network Administration",
+      "TC": "4",
+      "% QT": "30",
+      "% KT": "30",
+      "% Thi": "40",
+      "Bài tập": "",
+      "Kiểm tra": "62",
+      "Thi L1": "",
+      "TK1(10)": "",
+      "TK(10)": "",
+      "TK1(CH)": "",
+      "TK(CH)": ""
+    }
+  ],
+  "last_updated": "( Dữ liệu được cập nhật vào lúc: 23:31 Ngày: 7/12/2025)"
+}
