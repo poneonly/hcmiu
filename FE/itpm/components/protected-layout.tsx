@@ -6,29 +6,23 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useAuthStore } from "@/lib/store"
 import { Sidebar } from "./sidebar"
-import { getCurrentUser } from "@/lib/auth"
 
 export function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
-  const { isAuthenticated, user, login } = useAuthStore()
+  const { isAuthenticated, user } = useAuthStore()
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const checkAuth = async () => {
-      if (!isAuthenticated && !user) {
-        const currentUser = await getCurrentUser().catch(() => null)
-        if (currentUser) {
-          login(currentUser)
-        } else {
-          router.push("/login")
-          return
-        }
+      if (!isAuthenticated || !user) {
+        router.push("/login")
+        return
       }
       setLoading(false)
     }
 
     checkAuth()
-  }, [isAuthenticated, user, login, router])
+  }, [isAuthenticated, user, router])
 
   if (loading) {
     return (
